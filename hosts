@@ -8,6 +8,8 @@
 #   - You can enter hostnames or ip addresses
 #   - A hostname/ip can be a member of multiple groups
 
+localhost	ansible_connection=local
+
 [sjc1]
 10.24.128.31
 localhost	ansible_connection=local

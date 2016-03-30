@@ -1,5 +1,7 @@
 # Managed by ansible.  Any changes will be overwritten
 
+Defaults:ansi		!requiretty
+
 # ansi user can do anything
 ansi    ALL=(ALL)       NOPASSWD: ALL
 
