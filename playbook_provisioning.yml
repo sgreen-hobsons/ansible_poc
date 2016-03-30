@@ -1,5 +1,5 @@
 ---
-# Common stuff
+# Provisioning new host
 
 - hosts: all
   remote_user: root
