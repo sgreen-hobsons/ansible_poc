@@ -1,8 +1,10 @@
 ---
 - name: Update sudoers
-  lineinfile:   dest=/etc/sudoers.d/hobsons
-                src=/etc/sudoers.d/hobsons
-                state=present
-                create=yes
-		mode=0440
-                validate='visudo -cf %s'
+  template:
+    dest=/etc/sudoers.d/hobsons
+    src=etc/sudoers.d/hobsons
+    mode=0440
+    owner=root
+    group=root
+    force=yes
+    validate='visudo -cf %s'

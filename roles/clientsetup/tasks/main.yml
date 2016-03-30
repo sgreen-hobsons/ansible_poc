@@ -1,0 +1,12 @@
+---
+- name: Add ansi group
+  group: name=ansi gid=2001 state=present
+
+- name: Add ansi user
+  user: name=ansi comment="Ansible User" group=ansi uid=2001 createhome=yes home=/home/ansi state=present
+
+- name: Create .ssh directory
+  file: path='/home/ansi/.ssh' state=directory owner=ansi group=ansi mode=0700 recurse=yes
+
+- name: Setup authorized_keys
+  template: src=ansi_key/authorized_keys dest=/home/ansi/.ssh/authorized_keys owner=ansi group=ansi mode=0600

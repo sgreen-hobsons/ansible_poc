@@ -9,11 +9,11 @@
 #   - A hostname/ip can be a member of multiple groups
 
 [sjc1]
-10.24.128.31	ansible_ssh_user=ansi
+10.24.128.31
 localhost	ansible_connection=local
 
 [jboss-servers]
-10.24.128.31	ansible_ssh_user=ansi
+10.24.128.31
 
 [test]
-10.24.128.31	ansible_ssh_user=ansi
+10.24.128.31

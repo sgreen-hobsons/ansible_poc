@@ -3,8 +3,9 @@
 
 - hosts: jboss-servers
   remote_user: ansi
-  become: yes
-  become_method: sudo 
+  become: true
+  become_method: sudo
+  become_user: root 
 
   roles:
     - patching
