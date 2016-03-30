@@ -1,0 +1,10 @@
+---
+# This playbook will yum update all packages on given hosts
+
+- hosts: jboss-servers
+  remote_user: ansi
+  become: yes
+  become_method: sudo 
+
+  roles:
+    - patching
