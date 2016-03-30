@@ -1,0 +1,8 @@
+# Managed by ansible.  Any changes will be overwritten
+
+# ansi user can do anything
+ansi    ALL=(ALL)       NOPASSWD: ALL
+
+# TechOps users
+%wheel	ALL=(ALL)	ALL
+

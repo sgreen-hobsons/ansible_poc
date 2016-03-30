@@ -1,0 +1,6 @@
+---
+ntp_server1: iad1ads01.emt.hobsons.local
+ntp_server2: iad1ads02.emt.hobsons.local
+
+nameserver1: 10.56.168.24
+nameserver2: 10.56.171.12

@@ -1,0 +1,6 @@
+---
+ntp_server1: sav-ads-v01.hobsons.local
+ntp_server2: sav-ads-v02.hobsons.local
+
+nameserver1: 10.56.168.24
+nameserver2: 10.56.168.171

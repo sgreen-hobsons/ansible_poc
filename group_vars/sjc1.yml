@@ -1,0 +1,6 @@
+---
+ntp_server1: sjc1ads01.emt.hobsons.local
+ntp_server2: sjc1ads02.emt.hobsons.local
+
+nameserver1: 10.24.132.5 
+nameserver2: 10.24.132.6

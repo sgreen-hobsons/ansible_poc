@@ -1,0 +1,10 @@
+---
+# This playbook deploys a simple standalone JBoss server. 
+
+- hosts: jboss-servers
+  become: yes
+  become_method: sudo 
+  remote_user: root
+
+  roles:
+    - jboss-standalone

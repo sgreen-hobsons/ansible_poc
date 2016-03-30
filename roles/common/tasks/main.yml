@@ -1,0 +1,21 @@
+---
+- name: Install requisite packages, if needed
+  yum: name={{ item }} state=present
+  with_items:
+   - libselinux-python
+   - yum-plugin-security
+   - ntp
+   - ntpdate
+   - man
+   - wget
+   - curl
+
+- name: Add groups
+  group: name=ansi gid=501 state=present
+
+- name: Add users
+  user: name=ansi comment="Ansible User" group=ansi uid=501 createhome=yes home=/home/ansi state=present
+
+- name: Add ansi SSH keys
+  file: path=/home/ansi/.ssh state=directory mode=0700
+  file: src=/ansi_key/authorized_keys dest=/home/ansi/.ssh/authorized_keys mode=0600 owner=ansi group=ansi
