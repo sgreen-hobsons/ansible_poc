@@ -8,3 +8,4 @@
     - common
     - sudoers
     - ntp
+    - yum-cron

@@ -9,6 +9,7 @@
    - man
    - wget
    - curl
+   - sssd-client
 
 - name: Add groups
   group: name=ansi gid=501 state=present
