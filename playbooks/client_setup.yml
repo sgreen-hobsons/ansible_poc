@@ -1,0 +1,8 @@
+---
+# Setup a new host with ansible user & sudo
+
+- hosts: all
+  remote_user: root
+  roles:
+    - clientsetup
+    - sudoers
