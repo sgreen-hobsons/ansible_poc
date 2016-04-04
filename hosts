@@ -19,3 +19,6 @@ localhost	ansible_connection=local
 
 [test]
 10.24.128.31
+
+[vcenter]
+sjc1-vmmngt01.emt.hobsons.local

@@ -1,53 +1,10 @@
 ---
-# Deploy new host from template
-- vsphere_guest:
-    vcenter_hostname: {{ vmware_vcenter_hostname }}
-    username: {{ vmware_vcenter_username }}
-    password: {{ vmware_vcenter_password }}
-    guest: {{ vmware_guest_name }}
-    from_template: yes
-    template_src: {{ vmware_guest_template }}
-    cluster: {{ vmware_cluster }}
-    resource_pool:  {{ vmware_resource_pool }}
-
-    esxi:
-      datacenter: {{ vmware_datacenter }}
-      hostname: {{ vmware_cluster_hostname }}
-
-    # More than one disk & nic can be created.  Be sure to update vars.
-    vm_disk:
-     disk1:
-       size_gb: 10
-       type: thin
-       datastore: {{ vmware_datastore01 }}
-    vm_nic:
-      nic1:
-        type: vmxnet3
-        network: {{ vmware_network01 }}
-        network_type: standard
-
-    vm_hardware:
-      memory_mb: 2048
-      num_cpus: 2
-      osid: centos64Guest
-      scsi: paravirtual
-      # Uncomment the following if needed
-      #vm_cdrom:
-      #  type: "iso"
-      #  iso_path: "DatastoreName/cd-image.iso"
-      #vm_floppy:
-      #  type: "image"
-      #  image_path: "DatastoreName/floppy-image.flp"
-
-    vm_extra_config:
-      folder: {{ vmware_vcenter_guest_folder }}
-    tags: deploy
-
 # Gather facts about a guest
-- vsphere_guest:
-    vcenter_hostname: {{ vmware_vcenter_hostname }}
-    username: {{ vmware_vcenter_username }}
-    password: {{ vmware_vcenter_password }}
-    guest: {{ vmware_guest_name }}
+- name: Gather VM guest facts
+  vsphere_guest:
+    vcenter_hostname: sjc1-vmmngt01.emt.hobsons.local
+    username: shawn.green@hobsons.com
+    password: Redhat0!23 
+    guest: ansible-test-node
     vmware_guest_facts: yes
-    tags: gather_facts
+#    tags: "gather_facts"

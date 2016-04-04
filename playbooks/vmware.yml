@@ -1,11 +1,18 @@
 ---
-# Install & configure yum-cron
+# Gather vmware guest facts
 
-- hosts: test
-  remote_user: ansi
-  become: true
-  become_user: root
-  become_method: sudo
+- hosts: localhost
+   connection: local
+   gather_facts: false
+   user: ansi
 
   roles:
     - vmware
+
+#  vars:
+#    vmware_guest_name: ansible-test-node
+#    vmware_guest_name: {{ item }}
+#    with_items:
+#     - "sjc1du-ansible01"
+#     - "ansible-test-node"
+
