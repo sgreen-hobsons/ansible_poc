@@ -1,0 +1,11 @@
+---
+# Install & configure nginx
+
+- hosts: XXXXX
+  remote_user: ansi
+  become: true
+  become_user: root
+  become_method: sudo
+
+  roles:
+    - nginx

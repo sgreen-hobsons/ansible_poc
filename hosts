@@ -10,6 +10,9 @@
 
 localhost	ansible_connection=local
 
+[iad1]
+10.56.153.185
+
 [sjc1]
 10.24.128.31
 localhost	ansible_connection=local
@@ -22,3 +25,6 @@ localhost	ansible_connection=local
 
 [vcenter]
 sjc1-vmmngt01.emt.hobsons.local
+
+[ayprx]
+10.56.153.185

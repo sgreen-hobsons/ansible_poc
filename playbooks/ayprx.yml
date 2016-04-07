@@ -1,0 +1,12 @@
+---
+# Setup AY proxy
+
+- hosts: ayprx
+  remote_user: ansi
+  become: true
+  become_user: root
+  become_method: sudo
+
+  roles:
+    - common
+    - nginx
