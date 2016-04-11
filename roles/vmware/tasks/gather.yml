@@ -1,0 +1,11 @@
+---
+# Gather facts about a guest
+- name: Gather VM guest facts
+  vsphere_guest:
+    vcenter_hostname: "{{ vmware_vcenter_hostname }}"
+    username: "{{ vmware_vcenter_username }}"
+    password: "{{ vmware_vcenter_password }}"
+    guest: "{{ vmware_guest_name }}"
+    vmware_guest_facts: yes
+  tags:
+   - gather_facts

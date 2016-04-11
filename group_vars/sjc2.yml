@@ -1,6 +1,15 @@
 ---
-ntp_server1: sav-ads-v01.hobsons.local
-ntp_server2: sav-ads-v02.hobsons.local
+ntp_server_config:
+  - sav-ads-v01.hobsons.local
+  - sav-ads-v02.hobsons.local
 
-nameserver1: 10.56.168.24
-nameserver2: 10.56.168.171
+ntp_config_restrict:
+  - 'default kod nomodify notrap nopeer noquery'
+  - '-6 default kod nomodify notrap nopeer noquery'
+  - '127.0.0.1'
+  - '-6 ::1'
+  - '10.0.0.0 mask 255.0.0.0'
+
+nameserver_config:
+  - 10.56.168.24
+  - 10.56.168.171

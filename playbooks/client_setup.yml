@@ -2,10 +2,10 @@
 # Setup a new host with ansible user & sudo
 # 
 # To run this playbook:
-# $ ansible-playbook client_setup.yml -k -l IPADDRESS
+# $ ansible-playbook client_setup.yml -k -l IPADDRESS or HOSTNAME
 # 	<enter root password for remote system> 
 #
-- hosts: ayprx
+- hosts: all
   remote_user: root
 
   pre_tasks:
@@ -20,3 +20,5 @@
   roles:
     - clientsetup
     - sudoers
+    - common
+    - ntp

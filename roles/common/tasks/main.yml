@@ -4,9 +4,10 @@
   with_items:
    - libselinux-python
    - yum-plugin-security
-   - ntp
-   - ntpdate
    - man
    - wget
    - curl
    - sssd-client
+
+- name: Copy /etc/resolv.conf
+  template: src=etc/resolv.conf.j2 dest=/etc/resolv.conf mode=644

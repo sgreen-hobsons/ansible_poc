@@ -1,18 +1,25 @@
 ---
-# Gather vmware guest facts
+# VMware deploy & gather facts
 
 - hosts: localhost
-   connection: local
-   gather_facts: false
-   user: ansi
+#   connection: local
+#   gather_facts: false
+#   user: ansi
+
+  vars:
+    - vmware_guest_name: ansible-test-node
+
+  vars_prompt:
+    - name: "vmware_vcenter_username"
+      prompt: "Enter username"
+      private: no
+    - name: "vmware_vcenter_password"
+      prompt: "Enter password"
+      private: yes
+    - name: "vmware_guest_name"
+      prompt: "Guest Name?"
+      private: no
 
   roles:
     - vmware
-
-#  vars:
-#    vmware_guest_name: ansible-test-node
-#    vmware_guest_name: {{ item }}
-#    with_items:
-#     - "sjc1du-ansible01"
-#     - "ansible-test-node"
 

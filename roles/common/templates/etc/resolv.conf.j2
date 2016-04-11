@@ -1,0 +1,4 @@
+search {{ name_search }}
+{% for server in nameserver_config %}
+nameserver {{ server }}
+{% endfor %}

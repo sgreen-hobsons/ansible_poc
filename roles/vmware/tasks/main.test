@@ -1,0 +1,9 @@
+---
+# Gather facts about a guest
+- name: Gather VM guest facts
+  vsphere_guest:
+    vcenter_hostname: sjc1-vmmngt01.emt.hobsons.local
+    username: shawn.green@hobsons.com
+    password: Redhat0!23 
+    guest: ansible-test-node
+    vmware_guest_facts: yes

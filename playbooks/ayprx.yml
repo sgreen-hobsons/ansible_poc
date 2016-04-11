@@ -1,7 +1,13 @@
 ---
-# Setup AY proxy
+# Example playbook for setting up software on a host.
+# If a new inventory host, run this after running client_setup playbook
+# 
+# Set the hosts: below to the appropriate host group in the inventory
+# OR
+# Run this playbook using the -l flag to limit the hosts
+#	Ex. ansible-playbook ayprx.yml -l HOSTNAME_USED_IN_INVENTORY
 
-- hosts: ayprx
+- hosts: all
   remote_user: ansi
   become: true
   become_user: root
@@ -9,4 +15,3 @@
 
   roles:
     - common
-    - nginx

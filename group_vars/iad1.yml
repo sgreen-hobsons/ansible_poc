@@ -1,6 +1,15 @@
 ---
-ntp_server1: iad1ads01.emt.hobsons.local
-ntp_server2: iad1ads02.emt.hobsons.local
+ntp_config_server:
+  - iad1ads01.emt.hobsons.local
+  - iad1ads02.emt.hobsons.local
 
-nameserver1: 10.56.152.166
-nameserver2: 10.56.152.8
+ntp_config_restrict:
+  - 'default kod nomodify notrap nopeer noquery'
+  - '-6 default kod nomodify notrap nopeer noquery'
+  - '127.0.0.1'
+  - '-6 ::1'
+  - '10.0.0.0 mask 255.0.0.0'
+
+nameserver_config: 
+  - 10.56.152.166
+  - 10.56.152.8

@@ -11,7 +11,8 @@
 localhost	ansible_connection=local
 
 [iad1]
-10.56.153.185
+iad1pu-ayprx01.emt.hobsons.local
+iad1pu-appprx01.emt.hobsons.local
 
 [sjc1]
 10.24.128.31
@@ -23,8 +24,8 @@ localhost	ansible_connection=local
 [test]
 10.24.128.31
 
-[vcenter]
-sjc1-vmmngt01.emt.hobsons.local
+[appprx]
+iad1pu-appprx01.emt.hobsons.local
 
 [ayprx]
-10.56.153.185
+iad1pu-ayprx01.emt.hobsons.local

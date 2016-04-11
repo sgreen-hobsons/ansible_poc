@@ -1,7 +1,7 @@
 ---
 # Install & configure nginx
 
-- hosts: XXXXX
+- hosts: all
   remote_user: ansi
   become: true
   become_user: root
