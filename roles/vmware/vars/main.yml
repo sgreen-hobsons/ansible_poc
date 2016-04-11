@@ -1,17 +1,15 @@
 ---
-vmware_vcenter_hostname: "sjc1-vmmngt01.emt.hobsons.local"
-vmware_vcenter_username: shawn.green@hobsons.com
-vmware_vcenter_password: Redhat0!23
+vmware_vcenter_hostname: 'sjc1-vmmngt01.emt.hobsons.local'
 
-vmware_guest_name: ansible-test-node-02
-vmware_guest_template: CentOS_6.6_template_02_16
+vmware_guest_name: 'ansible-test-node-02'
+vmware_guest_template: 'CentOS_6.6_template_02_16'
 
-vmware_datacenter: SJC1-VMWare
-vmware_cluster: SJC1-VMCluster3 - QA/DEV/STAGING/DR
-vmware_cluster_hostname: sjc1-04a-01-vmhost.emt.hobsons.local
-vmware_resource_pool: blah
+vmware_datacenter: 'SJC1-VMWare'
+vmware_cluster: 'SJC1-VMCluster3 - QA/DEV/STAGING/DR'
+vmware_cluster_hostname: 'sjc1-04a-01-vmhost.emt.hobsons.local'
+vmware_resource_pool: 'sjc1-04a-01-vmhost.emt.hobsons.local'
 vmware_vcenter_guest_folder: Utilities
 
 # More than one datastore & network can be used, just add variables & update role.
-vmware_datastore01: sjc1vm4dsqadev02
-wmware_network01: VM Network Ethernet - 128
+vmware_datastore01: 'sjc1vm4dsqadev02'
+wmware_network01: 'VM Network Ethernet - 128'
