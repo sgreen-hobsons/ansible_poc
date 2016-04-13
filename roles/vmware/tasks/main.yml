@@ -6,15 +6,43 @@
     username: "{{ vmware_vcenter_username }}"
     password: "{{ vmware_vcenter_password }}"
     guest: "{{ vmware_guest_name }}"
-    from_template: yes
-    template_src: "{{ vmware_guest_template }}"
+    state: powered-on
+#    from_template: yes
+#    template_src: "{{ vmware_guest_template }}"
 #    cluster: "{{ vmware_cluster }}"
 #    resource_pool:  "{{ vmware_resource_pool }}"
     esxi:
       datacenter: "{{ vmware_datacenter }}"
       hostname: "{{ vmware_cluster_hostname }}"
+
+    # More than one disk & nic can be created.  Be sure to update vars.
+    vm_disk:
+     disk1:
+       size_gb: 10
+       type: thin
+       datastore: "{{ vmware_datastore01 }}"
+    vm_nic:
+      nic1:
+        type: vmxnet3
+        network: "{{ vmware_network01 }}"
+        network_type: standard
+
+    vm_hardware:
+      memory_mb: 2048
+      num_cpus: 1
+      osid: centos64Guest
+      scsi: paravirtual
+      # Uncomment the following if needed
+      vm_cdrom:
+        type: "iso"
+        iso_path: "sjc1vm4dsprod01/ISO/CentOS-6.6-x86_64-kick.iso"
+      #vm_floppy:
+      #  type: "image"
+      #  image_path: "DatastoreName/floppy-image.flp"
+
     vm_extra_config:
       folder: "{{ vmware_vcenter_guest_folder }}"
+
   tags:
     - deploy
 

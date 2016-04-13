@@ -12,4 +12,4 @@ vmware_vcenter_guest_folder: 'Utilities'
 
 # More than one datastore & network can be used, just add variables & update role.
 vmware_datastore01: 'sjc1vm4dsqadev02'
-wmware_network01: 'VM Network Ethernet - 128'
+vmware_network01: 'VM Network Ethernet - 128'
