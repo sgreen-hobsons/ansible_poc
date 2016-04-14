@@ -6,7 +6,7 @@
     username: "{{ vmware_vcenter_username }}"
     password: "{{ vmware_vcenter_password }}"
     guest: "{{ vmware_guest_name }}"
-    state: powered-on
+    state: powered_on
 #    from_template: yes
 #    template_src: "{{ vmware_guest_template }}"
 #    cluster: "{{ vmware_cluster }}"
@@ -35,7 +35,7 @@
       # Uncomment the following if needed
       vm_cdrom:
         type: "iso"
-        iso_path: "sjc1vm4dsprod01/ISO/CentOS-6.6-x86_64-kick.iso"
+        iso_path: "sjc1vm4dsprod01/ISO/CentOS-6.7-x86_64-kick.iso"
       #vm_floppy:
       #  type: "image"
       #  image_path: "DatastoreName/floppy-image.flp"
