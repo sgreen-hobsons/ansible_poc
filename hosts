@@ -16,7 +16,8 @@ iad1pu-appprx01
 iad1pu-shib01
 
 [sjc1]
-10.24.128.31
+sjc1du-ansitest01
+sjc1du-ansitest02
 localhost	ansible_connection=local
 
 [jboss-servers]
@@ -30,3 +31,6 @@ iad1pu-appprx01
 
 [ayprx]
 iad1pu-ayprx01
+
+[kick]
+sjc1du-ansitest02

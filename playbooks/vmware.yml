@@ -6,8 +6,9 @@
 #   gather_facts: false
 #   user: ansi
 
-  vars:
-    - vmware_guest_name: ansible-test-node
+# provide on commandline
+#  vars:
+#    - vmware_guest_name: false 
 
   vars_prompt:
     - name: "vmware_vcenter_username"

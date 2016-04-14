@@ -1,6 +1,6 @@
 ---
-# Deploy new host from template
-- name: Deploy host from template
+# Deploy new host from kickstart
+- name: Deploy new host
   vsphere_guest:
     vcenter_hostname: "{{ vmware_vcenter_hostname }}"
     username: "{{ vmware_vcenter_username }}"
@@ -32,10 +32,10 @@
       num_cpus: 1
       osid: centos64Guest
       scsi: paravirtual
-      # Uncomment the following if needed
       vm_cdrom:
         type: "iso"
         iso_path: "sjc1vm4dsprod01/ISO/CentOS-6.7-x86_64-kick.iso"
+      # Uncomment the following if needed
       #vm_floppy:
       #  type: "image"
       #  image_path: "DatastoreName/floppy-image.flp"
