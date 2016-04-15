@@ -1,0 +1,18 @@
+---
+- name: Install snmp, if needed
+  yum: name={{ item }} state=present
+  with_items:
+   - net-snmp
+   - net-snmp-utils
+   - net-snmp-libs
+  tags: snmp
+
+- name: Copying snmp.conf & setting permissions
+  template: src=snmp.conf.j2 dest=/etc/snmp/snmpd.conf mode=644
+  notify:
+    - restart snmpd
+  tags: snmp
+
+- name: Enable snmpd at startup
+  service: name=snmpd enabled=yes
+  tags: snmp

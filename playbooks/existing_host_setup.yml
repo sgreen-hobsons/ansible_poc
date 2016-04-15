@@ -1,0 +1,24 @@
+---
+# Setup an existing host with ansible user & sudo
+# 
+# To run this playbook:
+# $ ansible-playbook client_setup.yml -k -l IPADDRESS or HOSTNAME
+# 	<enter root password for remote system> 
+#
+- hosts: all
+  remote_user: root
+
+  pre_tasks:
+  - name: Install python SELinux libraries
+    yum: name=libselinux-python state=present
+
+  - name: Copy root SSH key
+    authorized_key:
+     user: root
+     key: "{{ lookup('file', '/etc/ansible/ssh_keys/root/id_rsa.pub') }}"
+      
+  roles:
+    - clientsetup
+    - sudoers
+    - common
+    - ntp

@@ -13,3 +13,11 @@ ntp_config_restrict:
 nameserver_config: 
   - 10.56.152.166
   - 10.56.152.8
+
+snmp_rocommunity
+  - public
+  - hobsons-he
+
+snmp_syslocation: "IAD1 Datacenter"
+
+snmp_syscontact: "networkteam@hobsons.com" 

@@ -1,0 +1,27 @@
+---
+# Setup a new host with ansible user & sudo
+# 
+# This is NOT for existing hosts to be added to ansible.
+# Use existing_host_setup.yml playbook
+# 
+# To run this playbook:
+# $ ansible-playbook new_host_setup.yml -k -l IPADDRESS or HOSTNAME
+# 	<enter root password for remote system> 
+#
+- hosts: all
+  remote_user: root
+
+  pre_tasks:
+  - name: Install python SELinux libraries
+    yum: name=libselinux-python state=present
+
+#  - name: Copy root SSH key
+#    authorized_key:
+#     user: root
+#     key: "{{ lookup('file', '/etc/ansible/ssh_keys/root/id_rsa.pub') }}"
+      
+  roles:
+    - clientsetup
+    - sudoers
+    - common
+    - ntp

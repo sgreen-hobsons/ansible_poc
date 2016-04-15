@@ -14,3 +14,11 @@ ntp_config_restrict:
 nameserver_config:
   - 10.56.168.24
   - 10.56.171.12
+
+snmp_rocommunity
+  - public
+  - hobsons-he
+
+snmp_syslocation: "DC6 Datacenter"
+
+snmp_syscontact: "networkteam@hobsons.com" 
