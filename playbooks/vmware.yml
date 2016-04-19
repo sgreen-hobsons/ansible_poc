@@ -11,12 +11,12 @@
 #    - vmware_guest_name: false 
 
   vars_prompt:
-    - name: "vmware_vcenter_username"
-      prompt: "Enter username"
-      private: no
-    - name: "vmware_vcenter_password"
-      prompt: "Enter password"
-      private: yes
+#    - name: "vmware_vcenter_username"
+#      prompt: "Enter username"
+#      private: no
+#    - name: "vmware_vcenter_password"
+#      prompt: "Enter password"
+#      private: yes
     - name: "vmware_guest_name"
       prompt: "Guest Name?"
       private: no

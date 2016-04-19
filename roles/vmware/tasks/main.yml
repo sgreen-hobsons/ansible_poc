@@ -1,4 +1,10 @@
 ---
+# Prepare firstrun.sh script to be run post kickstart
+- name: Setup post-kick script
+  template: src=firstrun.sh.j2 dest=/opt/kickstart/firstrun.sh owner=nginx group=nginx mode=0755
+  tags:
+    - kick_prep
+ 
 # Deploy new host from kickstart
 - name: Deploy new host
   vsphere_guest:
@@ -56,3 +62,15 @@
     vmware_guest_facts: yes
   tags:
    - gather_facts
+
+# Destroy a VM
+- name: Destroy VM
+  vsphere_guest:
+    vcenter_hostname: "{{ vmware_vcenter_hostname }}"
+    username: "{{ vmware_vcenter_username }}"
+    password: "{{ vmware_vcenter_password }}"
+    guest: "{{ vmware_guest_name }}"
+    state: absent
+    force: yes
+  tags:
+    - destroy

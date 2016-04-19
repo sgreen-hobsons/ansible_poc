@@ -14,7 +14,7 @@ nameserver_config:
   - 10.56.152.166
   - 10.56.152.8
 
-snmp_rocommunity
+snmp_rocommunity:
   - public
   - hobsons-he
 
