@@ -16,6 +16,7 @@ func_setnetwork()
 	sed -i 's/"dhcp"/"static"/g' /etc/sysconfig/network-scripts/ifcfg-eth0
 	sed -i 's/NM_CONTROLLED="yes"/NM_CONTROLLED="no"/g' /etc/sysconfig/network-scripts/ifcfg-eth0
 	echo "IPADDR=${guest_ip}" >> /etc/sysconfig/network-scripts/ifcfg-eth0
+	echo "NETMASK=${guest_netmask}" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 	echo "NETWORK=${guest_network}" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 	echo "BROADCAST=${guest_broadcast}" >> /etc/sysconfig/network-scripts/ifcfg-eth0
 
