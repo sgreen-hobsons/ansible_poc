@@ -5,13 +5,13 @@ vmware_vcenter_hostname: 'sjc1-vmmngt01.emt.hobsons.local'
 
 vmware_guest_template: 'CentOS_6.6_template_02_16'
 
-vmware_datacenter: 'SJC1-VMWare'
-vmware_cluster: 'SJC1_VMCluster3_QA_DEV_STAGING_DR'
-vmware_cluster_hostname: 'sjc1-04a-01-vmhost.emt.hobsons.local'
+#vmware_datacenter: 'SJC1-VMWare'
+#vmware_cluster: 'SJC1_VMCluster3_QA_DEV_STAGING_DR'
+#vmware_cluster_hostname: 'sjc1-04a-01-vmhost.emt.hobsons.local'
 #vmware_resource_pool: 'sjc1-04a-01-vmhost.emt.hobsons.local'
-vmware_resource_pool: ''
-vmware_vcenter_guest_folder: 'Utilities'
+#vmware_resource_pool: ''
+#vmware_vcenter_guest_folder: 'Utilities'
 
 # More than one datastore & network can be used, just add variables & update role.
-vmware_datastore01: 'sjc1vm4dsqadev02'
-vmware_network01: 'VM Network Ethernet - 128'
+#vmware_datastore01: 'sjc1vm4dsqadev02'
+#vmware_network01: 'VM Network Ethernet - 128'

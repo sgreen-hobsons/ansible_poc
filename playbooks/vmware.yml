@@ -1,25 +1,20 @@
 ---
-# VMware deploy & gather facts
+# VMware provision
 
 - hosts: localhost
-#   connection: local
-#   gather_facts: false
-#   user: ansi
 
-# provide on commandline
-#  vars:
-#    - vmware_guest_name: false 
-
-  vars_prompt:
-#    - name: "vmware_vcenter_username"
-#      prompt: "Enter username"
-#      private: no
-#    - name: "vmware_vcenter_password"
-#      prompt: "Enter password"
-#      private: yes
-    - name: "vmware_guest_name"
-      prompt: "Guest Name?"
-      private: no
+  vars:
+    - vmware_guest_name: 'HOSTNAME'
+    - vmware_vcenter_hostname: 'sjc1-vmmngt01.emt.hobsons.local' 
+    - vmware_datacenter: 'SJC1-VMWare'
+    - vmware_cluster: 'SJC1_VMCluster3_QA_DEV_STAGING_DR'
+    - vmware_cluster_hostname: 'sjc1-04a-01-vmhost.emt.hobsons.local'
+    - vmware_vcenter_guest_folder: 'Utilities'
+    - vmware_network01: 'VM Network Ethernet - 128'
+    - vmware_datastore01: 'sjc1vm4dsqadev02'
+    - vmware_disk01_size_gb: '20'
+    - vmware_hw_memory_mb: '2048'
+    - vmware_hw_num_cpus: '2'
 
   roles:
     - vmware

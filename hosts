@@ -8,8 +8,6 @@
 #   - You can enter hostnames or ip addresses
 #   - A hostname/ip can be a member of multiple groups
 
-localhost	ansible_connection=local
-
 [iad1]
 iad1pu-ayprx01
 iad1pu-appprx01
@@ -20,17 +18,22 @@ sjc1du-ansitest01
 sjc1du-ansitest02
 localhost	ansible_connection=local
 
-[jboss-servers]
-10.24.128.31
-
-[test]
-10.24.128.31
-
-[appprx]
+[nginx_proxy]
 iad1pu-appprx01
-
-[ayprx]
 iad1pu-ayprx01
 
+[nginx]
+localhost	ansible_connection=local
+
+[shibboleth]
+iad1pu-shib01
+
 [kick]
+sjc1du-ansitest02
+
+[jboss-servers]
+sjc1du-ansitest01
+
+[test]
+sjc1du-ansitest01
 sjc1du-ansitest02

@@ -24,7 +24,7 @@
     # More than one disk & nic can be created.  Be sure to update vars.
     vm_disk:
      disk1:
-       size_gb: 10
+       size_gb: "{{ vmware_disk01_size_gb }}"
        type: thin
        datastore: "{{ vmware_datastore01 }}"
     vm_nic:
@@ -34,8 +34,8 @@
         network_type: standard
 
     vm_hardware:
-      memory_mb: 2048
-      num_cpus: 1
+      memory_mb: "{{ vmware_hw_memory_mb }}"
+      num_cpus: "{{ vmware_hw_num_cpus }}"
       osid: centos64Guest
       scsi: paravirtual
       vm_cdrom:

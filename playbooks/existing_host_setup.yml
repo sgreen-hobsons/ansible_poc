@@ -2,7 +2,7 @@
 # Setup an existing host with ansible user & sudo
 # 
 # To run this playbook:
-# $ ansible-playbook client_setup.yml -k -l IPADDRESS or HOSTNAME
+# $ ansible-playbook existing_host_setup.yml -k -l IPADDRESS or HOSTNAME
 # 	<enter root password for remote system> 
 #
 - hosts: all
