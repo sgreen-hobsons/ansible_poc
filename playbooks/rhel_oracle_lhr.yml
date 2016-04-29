@@ -1,0 +1,83 @@
+---
+# VMware provision
+
+- hosts: localhost
+
+  vars:
+    - vmware_guest_name: 'lhr1sdccent'
+    - vmware_vcenter_username: 'HOBSONS\ansible_vcenter'
+    - vmware_vcenter_password: 'C@tandM0u5e!'
+    - vmware_vcenter_hostname: 'lhr1-vmmngt01.emt.hobsons.local'
+    - vmware_vcenter_hostname: 'lhr1-vmmngt01.emt.hobsons.local' 
+    - vmware_datacenter: 'LHR1-VMWare'
+    - vmware_cluster: 'LHR1-VMCluster - PROD'
+    - vmware_cluster_hostname: 'lhr1-01a-04-vmhost.emt.hobsons.local'
+    - vmware_network01: 'VM Network Ethernet'
+    - vmware_datastore01: 'vmdatastore03'
+    - vmware_disk01_size_gb: '20'
+    - vmware_disk02_size_gb: '80'
+    - vmware_hw_memory_mb: '12288'
+    - vmware_hw_num_cpus: '2'
+    - vmware_os_guest_id: 'rhel6_64Guest'
+    - vmware_iso_path: 'vmdatastore01/ISO/rhel-6u5-x86_64-kick.iso'
+
+  tasks:
+    - name: Setup post-kick script
+      template: src=/etc/ansible/roles/vmware-test/templates/firstrun.sh.j2 dest=/opt/kickstart/firstrun.sh owner=nginx group=nginx mode=0755
+      tags:
+        - kick_prep
+
+    - name: Setup ks.cfg
+      template: src=/etc/ansible/roles/vmware-test/templates/ks.cfg.j2 dest=/opt/kickstart/ks/ks.cfg owner=nginx group=nginx mode=0755
+      tags:
+        - kick_prep
+
+    - name: Deploy new host
+      vsphere_guest:
+        vcenter_hostname: "{{ vmware_vcenter_hostname }}"
+        username: "{{ vmware_vcenter_username }}"
+        password: "{{ vmware_vcenter_password }}"
+        guest: "{{ vmware_guest_name }}"
+        state: powered_on
+        esxi:
+          datacenter: "{{ vmware_datacenter }}"
+          hostname: "{{ vmware_cluster_hostname }}"
+
+        vm_disk:
+         disk1:
+           size_gb: "{{ vmware_disk01_size_gb }}"
+           type: thin
+           datastore: "{{ vmware_datastore01 }}"
+         disk2:
+           size_gb: "{{ vmware_disk02_size_gb }}"
+           type: thin
+           datastore: "{{ vmware_datastore01 }}"
+        vm_nic:
+         nic1:
+           type: vmxnet3
+           network: "{{ vmware_network01 }}"
+           network_type: standard
+
+        vm_hardware:
+          memory_mb: "{{ vmware_hw_memory_mb }}"
+          num_cpus: "{{ vmware_hw_num_cpus }}"
+          osid: "{{ vmware_os_guest_id }}"
+          scsi: paravirtual
+          vm_cdrom:
+            type: "iso"
+            iso_path: "{{ vmware_iso_path }}"
+
+      tags:
+        - deploy
+
+    - name: Destroy VM
+      vsphere_guest:
+        vcenter_hostname: "{{ vmware_vcenter_hostname }}"
+        username: "{{ vmware_vcenter_username }}"
+        password: "{{ vmware_vcenter_password }}"
+        guest: "{{ vmware_guest_name }}"
+        state: absent
+        force: yes
+      tags:
+        - destroy
+

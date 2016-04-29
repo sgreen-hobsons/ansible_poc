@@ -19,7 +19,7 @@
 #   RHEL 6 IAD1 - iad1vm3dsbuild0/ISO's/rhel-6u5-x86_64-kick.iso
 #   RHEL 6 LHR1 - vmdatastore01/ISO/rhel-6u5-x86_64-kick.iso
 #
-# To run: $ ansible-playbook myprovisioning.yml --tags "kick_prep,deploy"
+# To run: $ ansible-playbook myprovisioning.yml --tags "kick_prep,deploy_2_disk"
 #
 ######
 
@@ -35,6 +35,7 @@
     - vmware_network01: 'VM Network Ethernet - 128'
     - vmware_datastore01: 'sjc1vm4dsqadev02'
     - vmware_disk01_size_gb: '20'
+    - vmware_disk01_size_gb: '80'
     - vmware_hw_memory_mb: '2048'
     - vmware_hw_num_cpus: '2'
     - vmware_os_guest_id: 'centos64Guest'

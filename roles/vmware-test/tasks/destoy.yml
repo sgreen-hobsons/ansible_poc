@@ -1,0 +1,12 @@
+---
+# Destroy a VM
+- name: Destroy VM
+  vsphere_guest:
+    vcenter_hostname: "{{ vmware_vcenter_hostname }}"
+    username: "{{ vmware_vcenter_username }}"
+    password: "{{ vmware_vcenter_password }}"
+    guest: "{{ vmware_guest_name }}"
+    state: absent
+    force: yes
+  tags:
+    - destroy

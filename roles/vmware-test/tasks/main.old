@@ -4,6 +4,11 @@
   template: src=firstrun.sh.j2 dest=/opt/kickstart/firstrun.sh owner=nginx group=nginx mode=0755
   tags:
     - kick_prep
+
+- name: Setup ks.cfg
+  template: src=ks.cfg.j2 dest=/opt/kickstart/ks/ks.cfg owner=nginx group=nginx mode=0755
+  tags:
+    - kick_prep
  
 # Deploy new host from kickstart
 - name: Deploy new host
@@ -13,20 +18,18 @@
     password: "{{ vmware_vcenter_password }}"
     guest: "{{ vmware_guest_name }}"
     state: powered_on
-#    from_template: yes
-#    template_src: "{{ vmware_guest_template }}"
-#    cluster: "{{ vmware_cluster }}"
-#    resource_pool:  "{{ vmware_resource_pool }}"
     esxi:
       datacenter: "{{ vmware_datacenter }}"
       hostname: "{{ vmware_cluster_hostname }}"
 
-    # More than one disk & nic can be created.  Be sure to update vars.
     vm_disk:
-     disk1:
-       size_gb: "{{ vmware_disk01_size_gb }}"
-       type: thin
-       datastore: "{{ vmware_datastore01 }}"
+     "{ % for disk in vmware_disks % }"
+       "{{ disk.name }}":
+          size_gb: "{{ disk.size }}"
+          type: thin
+          datastore: "{{ vmware_datastore01 }}"
+     { % endfor % }
+
     vm_nic:
       nic1:
         type: vmxnet3
@@ -36,11 +39,11 @@
     vm_hardware:
       memory_mb: "{{ vmware_hw_memory_mb }}"
       num_cpus: "{{ vmware_hw_num_cpus }}"
-      osid: centos64Guest
+      osid: "{{ vmware_os_guest_id }}"
       scsi: paravirtual
       vm_cdrom:
         type: "iso"
-        iso_path: "sjc1vm4dsprod01/ISO/CentOS-6.7-x86_64-kick.iso"
+        iso_path: "{{ vmware_iso_path }}"
       # Uncomment the following if needed
       #vm_floppy:
       #  type: "image"

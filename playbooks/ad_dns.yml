@@ -1,0 +1,15 @@
+---
+- name: Add host to AD DNS
+  hosts: iad01ads01
+  vars:
+    - dns_server: 'iad01ads01.emt.hobsons.local'
+    - dns_record_type: 'A'
+    - dns_zone: 'hobsons.local'
+    - dns_host_name: 'hostname' 
+    - dns_ip_address: 'ip.add.ress'
+
+  tasks:
+    - name: Running script to add host to AD DNS
+      script: scripts/ad_dns_update.ps1.j2
+      register: out
+    - debug: var=out

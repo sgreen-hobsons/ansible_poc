@@ -1,0 +1,4 @@
+# Managed by Ansible, any changes will be overwritten
+
+# oracle user can do anything
+oracle    ALL=(ALL)       NOPASSWD: ALL

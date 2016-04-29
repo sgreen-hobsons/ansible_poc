@@ -1,0 +1,6 @@
+---
+dns_server = "iad01ads01.emt.hobsons.local"
+#dns_zone = ""
+dns_record_type = "A"
+#dns_host_name 
+#dns_ip_address

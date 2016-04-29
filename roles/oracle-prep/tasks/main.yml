@@ -1,0 +1,40 @@
+---
+- name: Add Oracle groups
+  group: name=oinstall gid=54321 state=present
+  group: name=dba gid=54322 state=present
+  group: name=oper gid=54323 state=present
+
+- name: Add Oracle user
+  user: 
+    name=oracle 
+    comment="Oracle User"
+    group=oinstall
+    uid=54321
+    createhome=yes
+    home=/home/oracle
+    groups=dba
+    state=present
+
+- name: Add Oracle user to sudoers
+  template:
+    src=etc/sudoers.d/oracle
+    dest=/etc/sudoers.d/oracle
+    mode=0440
+    owner=root
+    group=root
+    force=yes
+    validate='visudo -cf %s'
+
+- name: Install prerequisite packages
+  yum: name={{ item }} state=present
+  with_items: packages_list
+
+- name: Disable SELinux, if enabled
+  selinux: state=disabled
+
+- name: Disable iptables, if enabled
+  service: name=iptables state=stopped enabled=no
+
+- name: Set some system configurations
+  copy: src=vncservers dest=/etc/sysconfig/vncservers owner=root group=root mode=644
+  copy: src=90-nproc.conf dest=/etc/securit/limits.d/90-nproc.conf owner=root group=root mode=644

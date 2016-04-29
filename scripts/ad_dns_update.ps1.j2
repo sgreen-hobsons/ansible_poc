@@ -1,0 +1,20 @@
+# Environment Setup 
+$DNSServer = {{ dns_server }}
+$DNSZone = {{ dns_zone }}
+ 
+$recordName = {{ dns_host_name }}
+$recordType = {{ dns_record_type }}
+$recordAddress = {{ dns_ip_address }}
+ 
+# Build our DNSCMD DELETE command syntax 
+$cmdDelete = "dnscmd $DNSServer /RecordDelete $DNSZone $recordName $recordType /f" 
+
+# Build our DNSCMD ADD command syntax 
+$cmdAdd = "dnscmd $DNSServer /RecordAdd $DNSZone $recordName $recordType $recordAddress" 
+ 
+# Now we execute the command 
+Write-Host "Running the following command: $cmdDelete" 
+Invoke-Expression $cmdDelete 
+
+Write-Host "Running the following command: $cmdAdd" 
+Invoke-Expression $cmdAdd 

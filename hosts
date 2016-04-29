@@ -18,6 +18,11 @@ sjc1du-ansitest01
 sjc1du-ansitest02
 localhost	ansible_connection=local
 
+[lhr1]
+lhr1pdccent
+lhr1sdccent
+lhr1pdrman
+
 [nginx_proxy]
 iad1pu-appprx01
 iad1pu-ayprx01
@@ -27,6 +32,17 @@ localhost	ansible_connection=local
 
 [shibboleth]
 iad1pu-shib01
+iad1pu-shib02
+
+[oracle]
+lhr1pdccent
+lhr1sdccent
+lhr1pdrman
+
+[windows]
+#iad1-sccm01
+iad01ads01
+iad1kiw01
 
 [kick]
 sjc1du-ansitest02

@@ -1,0 +1,19 @@
+---
+# Prepare firstrun.sh script to be run post kickstart
+#- include_vars: ../roles/vmware-test/vars/main.yml
+
+#- name: Setup post-kick script
+#  template: src=firstrun.sh.j2 dest=/opt/kickstart/firstrun.sh owner=nginx group=nginx mode=0755
+#  tags:
+#    - kick_prep
+
+#- name: Setup ks.cfg
+#  template: src=ks.cfg.j2 dest=/opt/kickstart/ks/ks.cfg owner=nginx group=nginx mode=0755
+#  tags:
+#    - kick_prep
+
+- name: Setup deploy.yml
+#  template: src=deploy.yml.j2 dest=/etc/ansible/roles/vmware-test/tasks/deploy.yml owner=root group=root mode=0644
+  template: src=deploy.yml.j2 dest=/tmp/deploy.yml owner=root group=root mode=0644
+  tags:
+    - kick_prep

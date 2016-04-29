@@ -1,0 +1,13 @@
+---
+# Prepare firstrun.sh script to be run post kickstart
+- name: Setup post-kick script
+  template: src=firstrun.sh.j2 dest=/opt/kickstart/firstrun.sh owner=nginx group=nginx mode=0755
+  tags:
+    - firstrun
+    - kick_prep
+
+- name: Setup ks.cfg
+  template: src=ks.cfg.j2 dest=/opt/kickstart/ks/ks.cfg owner=nginx group=nginx mode=0755
+  tags:
+    - kickstart
+    - kick_prep

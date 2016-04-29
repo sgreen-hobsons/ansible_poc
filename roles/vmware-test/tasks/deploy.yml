@@ -1,26 +1,25 @@
 ---
-# Deploy new host from template
-- name: Deploy host from template
+# Deploy new host from kickstart
+- name: Deploy new host
   vsphere_guest:
     vcenter_hostname: "{{ vmware_vcenter_hostname }}"
     username: "{{ vmware_vcenter_username }}"
     password: "{{ vmware_vcenter_password }}"
     guest: "{{ vmware_guest_name }}"
-    from_template: yes
-    template_src: "{{ vmware_guest_template }}"
-#    cluster: "{{ vmware_cluster }}"
-    resource_pool:  "{{ vmware_resource_pool }}"
-
+    state: powered_on
     esxi:
       datacenter: "{{ vmware_datacenter }}"
       hostname: "{{ vmware_cluster_hostname }}"
 
-    # More than one disk & nic can be created.  Be sure to update vars.
     vm_disk:
-     disk1:
-       size_gb: 10
-       type: thin
-       datastore: "{{ vmware_datastore01 }}"
+     {{ item[0] }}:
+        size_gb: {{ item[1] }}
+        type: thin
+        datastore: "{{ vmware_datastore01 }}"
+     with_nested:
+       - "{{ vmware_disk }}"
+       - "{{ vmware_disk_size }}"
+
     vm_nic:
       nic1:
         type: vmxnet3
@@ -28,14 +27,14 @@
         network_type: standard
 
     vm_hardware:
-      memory_mb: 2048
-      num_cpus: 1
-      osid: centos64Guest
+      memory_mb: "{{ vmware_hw_memory_mb }}"
+      num_cpus: "{{ vmware_hw_num_cpus }}"
+      osid: "{{ vmware_os_guest_id }}"
       scsi: paravirtual
+      vm_cdrom:
+        type: "iso"
+        iso_path: "{{ vmware_iso_path }}"
       # Uncomment the following if needed
-      #vm_cdrom:
-      #  type: "iso"
-      #  iso_path: "DatastoreName/cd-image.iso"
       #vm_floppy:
       #  type: "image"
       #  image_path: "DatastoreName/floppy-image.flp"
@@ -43,5 +42,5 @@
     vm_extra_config:
       folder: "{{ vmware_vcenter_guest_folder }}"
 
-   tags:
+  tags:
     - deploy
