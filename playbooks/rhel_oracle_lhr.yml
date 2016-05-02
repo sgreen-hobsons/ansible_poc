@@ -4,10 +4,9 @@
 - hosts: localhost
 
   vars:
-    - vmware_guest_name: 'lhr1sdccent'
+    - vmware_guest_name: 'lhr1pdrman'
     - vmware_vcenter_username: 'HOBSONS\ansible_vcenter'
     - vmware_vcenter_password: 'C@tandM0u5e!'
-    - vmware_vcenter_hostname: 'lhr1-vmmngt01.emt.hobsons.local'
     - vmware_vcenter_hostname: 'lhr1-vmmngt01.emt.hobsons.local' 
     - vmware_datacenter: 'LHR1-VMWare'
     - vmware_cluster: 'LHR1-VMCluster - PROD'

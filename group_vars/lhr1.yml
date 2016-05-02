@@ -1,0 +1,18 @@
+---
+ntp_config_server:
+  - 10.104.129.4
+  - 10.104.129.5
+
+nameserver_config:
+  - 10.104.129.101
+  - 10.104.129.105
+
+snmp_rocommunity:
+  - hobsons-he
+
+snmp_syslocation: "LHR1 Datacenter"
+
+snmp_syscontact: "networkteam@hobsons.com" 
+
+splunk_server: lhr1-splunk
+splunk_port: 9997

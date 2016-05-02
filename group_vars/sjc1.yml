@@ -6,3 +6,6 @@ ntp_config_server:
 nameserver_config: 
   - 10.24.132.5
   - 10.24.132.6
+
+splunk_server: sjc1-splunk
+splunk_port: 9997

@@ -12,6 +12,8 @@
 iad1pu-ayprx01
 iad1pu-appprx01
 iad1pu-shib01
+iad1pu-aprrab03
+iad1pu-aprrab04
 
 [sjc1]
 sjc1du-ansitest01
@@ -22,6 +24,14 @@ localhost	ansible_connection=local
 lhr1pdccent
 lhr1sdccent
 lhr1pdrman
+lhr1pu-aprrab03
+lhr1pu-aprrab04
+
+[rabbitmq]
+iad1pu-aprrab03
+iad1pu-aprrab04
+lhr1pu-aprrab03
+lhr1pu-aprrab04
 
 [nginx_proxy]
 iad1pu-appprx01

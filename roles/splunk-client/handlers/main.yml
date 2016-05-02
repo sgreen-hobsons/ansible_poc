@@ -1,0 +1,9 @@
+---
+- name: start splunk
+  service: name=splunk state=started
+
+- name: restart splunk
+  service: name=splunk state=restarted
+
+- name: stop splunk
+  service: name=splunk state=stopped

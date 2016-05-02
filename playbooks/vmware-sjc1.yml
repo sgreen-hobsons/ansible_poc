@@ -2,28 +2,12 @@
 # VMware provisioning
 
 ######
-#
-# Use this playbook to provision VM Guest with 2 disks
-#
-######
 # Documentation: https://confluence.naviance.com/display/Techops/Ansible+Linux+Provisioning
 # Use this playbook as a template.
 #
 # Create a copy & update the vars as needed. 
 # 
-# vmware_os_guest_id options:
-#   CentOS - centos64Guest
-#   RHEL - rhel6_64Guest
-# 
-# vmware_iso_path options:
-#   CentOS 6.7 SJC1 - sjc1vm4dsprod01/ISO/CentOS-6.7-x86_64-kick.iso
-#   CentOS 6.7 IAD1 - iad1vm3dsbuild0/ISO's/CentOS-6.7-x86_64-kick.iso
-#   CentOS 6.7 LHR1 - vmdatastore01/ISO/CentOS-6.7-x86_64-kick.iso
-#   RHEL 6 SJC1 - sjc1vm4dsprod01/ISO/rhel-6u5-x86_64-kick.iso
-#   RHEL 6 IAD1 - iad1vm3dsbuild0/ISO's/rhel-6u5-x86_64-kick.iso
-#   RHEL 6 LHR1 - vmdatastore01/ISO/rhel-6u5-x86_64-kick.iso
-#
-# To run: $ ansible-playbook myprovisioning.yml --tags "kick_prep,deploy_2_disk"
+# To run: $ ansible-playbook myprovisioning.yml --tags "kick_prep,deploy"
 #
 ######
 
@@ -39,7 +23,6 @@
     - vmware_network01: 'VM Network Ethernet - 128'
     - vmware_datastore01: 'sjc1vm4dsqadev02'
     - vmware_disk01_size_gb: '20'
-    - vmware_disk01_size_gb: '80'
     - vmware_hw_memory_mb: '2048'
     - vmware_hw_num_cpus: '2'
     - vmware_os_guest_id: 'centos64Guest'

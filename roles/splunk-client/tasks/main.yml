@@ -1,0 +1,41 @@
+---
+- name: Download & Install Splunk Forwarder
+  yum:
+   - name=http://sjc1du-ansible01.emt.hobsons.local/pkg/splunk-6.3.3-f44afce176d0-linux-2.6-x86_64.rpm
+   - state=present
+
+  tags: splunk
+
+- name: Enable startup
+  command: /opt/splunk/bin/splunk enable boot-start
+  command: /opt/splunk/bin/splunk disable webserver
+
+- name: Start Splunk
+  command: /opt/splunk/bin/splunk start --no-prompt --answer-yes
+
+- name: Configure Splunk Forwarder
+  template:
+   - src=inputs.conf.j2
+   - dest=/opt/splunk/etc/system/local/inputs.conf
+   - owner=splunk
+   - group=splunk
+   - mode=0644
+
+  template:
+   - src=outputs.conf.j2
+   - dest=/opt/splunk/etc/system/local/outputs.conf
+   - owner=splunk
+   - group=splunk
+   - mode=0644
+
+  template:
+   - src=server.conf.j2
+   - dest=/opt/splunk/etc/system/local/server.conf
+   - owner=splunk
+   - group=splunk
+   - mode=0644
+
+  notify:
+    - splunk restart
+
+  tags: splunk

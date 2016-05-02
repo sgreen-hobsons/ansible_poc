@@ -1,0 +1,14 @@
+[default]
+host = iad01-mail01
+
+[monitor://$SPLUNK_HOME/etc/splunk.version]
+disabled = 1
+
+[monitor://$SPLUNK_HOME/var/log/splunk]
+disabled = 1
+
+[monitor://$SPLUNK_HOME/var/spool/splunk/...stash_new]
+disabled = 1
+
+[monitor://$SPLUNK_HOME/var/spool/splunk]
+disabled = 1
