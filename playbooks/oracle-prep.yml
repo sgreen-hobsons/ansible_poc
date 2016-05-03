@@ -1,0 +1,11 @@
+---
+# Prep for Oracle installation
+
+- hosts: all
+  remote_user: ansi
+  become: true
+  become_user: root
+  become_method: sudo
+
+  roles:
+    - oracle-prep

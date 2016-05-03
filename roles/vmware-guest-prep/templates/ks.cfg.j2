@@ -1,9 +1,9 @@
 # Kickstart with Ansible
 
 install
-{% if "vmware_guest_os_id" == "centos64Guest" %}
-#cdrom
-url --url http://10.24.128.30/ks_mirror/centos6_x86_64
+{% if vmware_os_guest_id == "centos64Guest" %}
+cdrom
+#url --url http://10.24.128.30/ks_mirror/centos6_x86_64
 {% else %}
 cdrom
 #url --url http://10.24.128.30/ks_mirror/rhel6u5_x86_64
@@ -26,7 +26,7 @@ clearpart --all --drives=sda
 zerombr yes
 reboot
 
-{% if "vmware_disk02_size_gb" %}
+{% if vmware_disk02_size_gb is defined %}
 part /boot --fstype=ext4 --size=500
 part pv.1 --grow --size=1 --ondisk=sda
 part pv.2 --grow --size=1 --ondisk=sdb

@@ -1,7 +1,11 @@
 ---
-- name: Add Oracle groups
+- name: Add Oracle group
   group: name=oinstall gid=54321 state=present
+
+- name: Add dba group
   group: name=dba gid=54322 state=present
+
+- name: Add oper group
   group: name=oper gid=54323 state=present
 
 - name: Add Oracle user
@@ -14,10 +18,12 @@
     home=/home/oracle
     groups=dba
     state=present
+    password="$6$rounds=656000$HXslw0axO9DpnDPJ$T7xtDslbfPbPwTLmgd4L9gRnQJdYyl.i9u8WawfdVo2lWNIj4Rd0eYDOn4qHxIL8Zddjsl8lIXWvV1ux/LkLj1"
+    update_password=always
 
 - name: Add Oracle user to sudoers
-  template:
-    src=etc/sudoers.d/oracle
+  copy:
+    src=etc/sudoers/oracle
     dest=/etc/sudoers.d/oracle
     mode=0440
     owner=root
@@ -35,6 +41,23 @@
 - name: Disable iptables, if enabled
   service: name=iptables state=stopped enabled=no
 
-- name: Set some system configurations
-  copy: src=vncservers dest=/etc/sysconfig/vncservers owner=root group=root mode=644
-  copy: src=90-nproc.conf dest=/etc/securit/limits.d/90-nproc.conf owner=root group=root mode=644
+- name: Setup vncserver configuration
+  copy: src=vncservers dest=/etc/sysconfig/vncservers owner=root group=root mode=0644 force=yes
+
+- name: Create oracle .vnc directory
+  file: path=/home/oracle/.vnc owner=oracle group=oinstall mode=0755
+
+- name: Create root .vnc directory
+  file: path=/root/.vnc owner=root group=root mode=0755
+
+- name: Setup vncserver user for oracle
+  copy: src=vnc/oracle dest=/home/oracle/.vnc/passwd owner=oracle group=oinstall mode=0600 force=yes
+
+- name: Setup vncserver user for root
+  copy: src=vnc/root dest=/root/.vnc/passwd owner=root group=root mode=0600 force=yes
+
+- name: Restart vncserver
+  service: name=vncserver state=restarted
+
+- name: Setup limits configuration
+  copy: src=90-nproc.conf dest=/etc/security/limits.d/90-nproc.conf owner=root group=root mode=644

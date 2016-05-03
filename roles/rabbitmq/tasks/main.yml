@@ -1,11 +1,12 @@
 ---
 - name: Download & Install erlang
-  get_url: url=https://packages.erlang-solutions.com/erlang/esl-erlang/FLAVOUR_1_general/esl-erlang_18.2-1~centos~6_amd64.rpm dest=/root/esl-erlang_18.2-1~centos~6_amd64.rpm
   yum: name=http://sjc1du-ansible01.emt.hobsons.local/emt/esl-erlang_18.2-1~centos~6_amd64.rpm state=present
   tags: erlang
 
-- name: Download & Install rabbitmq
+- name: Get rabbitmq signing key
   rpm_key: key=https://www.rabbitmq.com/rabbitmq-signing-key-public.asc state=present
+
+- name: Download & Install rabbitmq
   yum: name=http://sjc1du-ansible01.emt.hobsons.local/pkg/rabbitmq-server-3.6.1-1.noarch.rpm state=present
   tags: rabbitmq
 
@@ -15,8 +16,7 @@
   tags: rabbitmq
 
 - name: Adjust limits for rabbitmq user
-  pam_limits: domain=rabbitmq limit_type=soft limit_item=nofile value=65536
-  pam_limits: domain=rabbitmq limit_type=hard limit_item=nofile value=65536
+  copy: src=etc/security/rabbitmq-limits.conf dest=/etc/security/limits.d/rabbitmq.conf
 
 - name: Adding additional parameters to rabbitmq configuration
   copy: src=rabbitmq-add.config dest=/root/rabbitmq-add.config

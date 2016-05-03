@@ -3,6 +3,13 @@ ntp_config_server:
   - 10.104.129.4
   - 10.104.129.5
 
+ntp_config_restrict:
+  - 'default kod nomodify notrap nopeer noquery'
+  - '-6 default kod nomodify notrap nopeer noquery'
+  - '127.0.0.1'
+  - '-6 ::1'
+  - '10.0.0.0 mask 255.0.0.0'
+
 nameserver_config:
   - 10.104.129.101
   - 10.104.129.105

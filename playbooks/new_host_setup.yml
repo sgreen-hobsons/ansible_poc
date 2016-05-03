@@ -18,5 +18,6 @@
   roles:
     - clientsetup
     - sudoers
+    - patching
     - common
     - ntp

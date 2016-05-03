@@ -41,3 +41,5 @@ packages_list:
   - xterm
   - twm
   - tigervnc-server
+
+oracle_user: oracle
