@@ -1,6 +1,6 @@
 [tcpout]
-defaultGroup = sjc1-splunk_9997
+defaultGroup = {{ splunk_server }}_{{ splunk_port }}
 
-[tcpout:sjc1-splunk_9997]
+[tcpout:{{ splunk_server }}_{{ splunk_port }}]
 autoLB = true
-server = sjc1-splunk:9997
+server = {{ splunk_server }}:{{ splunk_port }}

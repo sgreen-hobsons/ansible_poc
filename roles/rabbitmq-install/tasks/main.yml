@@ -51,3 +51,13 @@
 - name: Create HA Policies for AY queues
   command: rabbitmqctl set_policy "AY Mirrored Queues" "^AY\." '{"ha-mode":"all"}'
   tags: rabbitmq
+
+- name: Add splunk monitoring
+  lineinfile: "dest=/opt/splunk/etc/system/local/inputs.conf line='[monitor:///var/log/rabbitmq/rabbit@{{ ansible_hostname }}.log]'"
+  tags:
+   - rabbitmq
+   - rabbitmq_splunk
+
+- name: Restart Splunk
+  command: /etc/init.d/splunk restart
+  tags: rabbitmq_splunk
