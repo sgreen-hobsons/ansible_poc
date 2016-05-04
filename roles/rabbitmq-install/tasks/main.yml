@@ -1,0 +1,53 @@
+---
+- name: Download & Install erlang
+  yum: name=http://sjc1du-ansible01.emt.hobsons.local/pkg/esl-erlang_18.2-1~centos~6_amd64.rpm state=present
+  tags: erlang
+
+- name: Get rabbitmq signing key
+  rpm_key: key=https://www.rabbitmq.com/rabbitmq-signing-key-public.asc state=present
+
+- name: Download & Install rabbitmq
+  command: rpm -ivh --nodeps http://sjc1du-ansible01.emt.hobsons.local/pkg/rabbitmq-server-3.6.1-1.noarch.rpm
+  tags: rabbitmq
+
+- name: Enable rabbitmq management plugin
+  command: rabbitmq-plugins enable rabbitmq_management
+  tags: rabbitmq
+
+- name: Adjust limits for rabbitmq user
+  copy: src=etc/security/rabbitmq-limits.conf dest=/etc/security/limits.d/rabbitmq.conf
+
+- name: Adding additional parameters to rabbitmq configuration
+  copy: src=rabbitmq-add.config dest=/etc/rabbitmq/rabbitmq.config owner=root group=root mode=0755
+  tags: rabbitmq
+
+# Because the handlers aren't working for some reason...
+- name: Stop rabbitmq
+  command: /etc/init.d/rabbitmq-server stop
+
+- name: Start rabbitmq
+  command: /etc/init.d/rabbitmq-server start
+
+- name: Create rabbitmq user account
+  command: rabbitmqctl add_user mquser {{ rabbitmq_user_pass }}
+  tags: rabbitmq
+
+- name: Delete guest account
+  command: rabbitmqctl delete_user guest
+  tags: rabbitmq
+
+- name: Set account permissions
+  command: rabbitmqctl set_permissions mquser ".*" ".*" ".*"
+  tags: rabbitmq
+
+- name: Set rabbitmq user tags
+  command: rabbitmqctl set_user_tags mquser administrator
+  tags: rabbitmq
+
+- name: Create HA Policies for AR queues
+  command: rabbitmqctl set_policy "AR Mirrored Queues" "^AR\." '{"ha-mode":"all"}'
+  tags: rabbitmq
+
+- name: Create HA Policies for AY queues
+  command: rabbitmqctl set_policy "AY Mirrored Queues" "^AY\." '{"ha-mode":"all"}'
+  tags: rabbitmq

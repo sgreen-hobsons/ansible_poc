@@ -1,9 +1,9 @@
 ---
-- name: start rabbitmq-server
+- name: start_rabbitmq-server
   service: name=rabbitmq-server state=started
 
-- name: restart rabbitmq-server
+- name: restart_rabbitmq-server
   service: name=rabbitmq-server state=restarted
 
-- name: stop rabbitmq-server
+- name: stop_rabbitmq-server
   service: name=rabbitmq-server state=stopped

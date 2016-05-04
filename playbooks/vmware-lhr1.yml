@@ -14,14 +14,14 @@
 - hosts: localhost
 
   vars:
-    - vmware_guest_name: 'lhr1pu-aprrab03'
+    - vmware_guest_name: 'lhr1pu-aprrab04'
     - vmware_vcenter_hostname: 'lhr1-vmmngt01.emt.hobsons.local' 
     - vmware_datacenter: 'LHR1-VMWare'
     - vmware_cluster: 'LHR1-VMCluster - PROD'
     - vmware_cluster_hostname: 'lhr1-01a-04-vmhost.emt.hobsons.local'
     - vmware_vcenter_guest_folder: 'App Review'
     - vmware_network01: 'VM Network Ethernet'
-    - vmware_datastore01: 'vmdatastore03'
+    - vmware_datastore01: 'vmdatastore04'
     - vmware_disk01_size_gb: '30'
     - vmware_hw_memory_mb: '8192'
     - vmware_hw_num_cpus: '2'
