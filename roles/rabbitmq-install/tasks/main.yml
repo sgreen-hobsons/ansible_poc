@@ -14,7 +14,7 @@
   tags: rabbitmq_install
 
 - name: Adding iptables rules for rabbitmq
-  command: iptables -A INPUT -m state --state NEW -m tcp -p tcp --dport {{ item }} -j ACCEPT
+  command: iptables -A INPUT -m tcp -p tcp --dport {{ item }} -j ACCEPT
   with_items:
     - 5672
     - 15672
