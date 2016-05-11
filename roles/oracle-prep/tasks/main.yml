@@ -61,3 +61,13 @@
 
 - name: Setup limits configuration
   copy: src=90-nproc.conf dest=/etc/security/limits.d/90-nproc.conf owner=root group=root mode=644
+
+- name: Set ownership for Oracle directories
+  file: path=/{{ item }} owner=oracle group=oinstall
+  with_items:
+    - oraclearch
+    - oracledata
+    - oraclediag
+    - oracleredo1
+    - oracleredo2
+    - oraclesoft

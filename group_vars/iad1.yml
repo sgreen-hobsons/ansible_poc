@@ -17,10 +17,11 @@ nameserver_config:
 snmp_rocommunity:
   - public
   - hobsons-he
+  - Hobsons
 
-snmp_syslocation: "IAD1 Datacenter"
+snmp_syslocation: IAD1 Datacenter
 
-snmp_syscontact: "networkteam@hobsons.com" 
+snmp_syscontact: networkteam@hobsons.com 
 
 splunk_server: iad1-splunk
 splunk_port: 9997

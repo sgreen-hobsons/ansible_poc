@@ -1,5 +1,6 @@
 {% for rocommunity in snmp_rocommunity %}
 rocommunity {{ rocommunity }}
 {% endfor %}
-syslocation (( snmp_syslocation }}
-syscontact (( snmp_syscontact }}
+
+syslocation {{ snmp_syslocation }}
+syscontact {{ snmp_syscontact }}

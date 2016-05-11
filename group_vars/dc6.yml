@@ -19,6 +19,6 @@ snmp_rocommunity
   - public
   - hobsons-he
 
-snmp_syslocation: "DC6 Datacenter"
+snmp_syslocation: DC6 Datacenter
 
-snmp_syscontact: "networkteam@hobsons.com" 
+snmp_syscontact: networkteam@hobsons.com

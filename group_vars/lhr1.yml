@@ -16,10 +16,11 @@ nameserver_config:
 
 snmp_rocommunity:
   - hobsons-he
+  - Hobsons
 
-snmp_syslocation: "LHR1 Datacenter"
+snmp_syslocation: LHR1 Datacenter
 
-snmp_syscontact: "networkteam@hobsons.com" 
+snmp_syscontact: networkteam@hobsons.com
 
 splunk_server: lhr1-splunk
 splunk_port: 9997
