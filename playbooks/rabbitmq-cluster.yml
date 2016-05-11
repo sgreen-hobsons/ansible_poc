@@ -1,5 +1,7 @@
 ---
 # Configure rabbitmq clustering
+# lhr erlang cookie - YDNVVSSFLDIMGBLLTFDG
+# iad erlang cookie - BCSAKKOYYEWCHMJWQUIV
 
 - hosts: all
   remote_user: ansi
@@ -8,7 +10,9 @@
   become_method: sudo
 
   vars:
-    - rabbitmq_master: iad1pu-aprrab03
+    - rabbitmq_master: lhr1pu-aprrab03
+    - erlang_cookie: YDNVVSSFLDIMGBLLTFDG
+
 
   roles:
     - rabbitmq-cluster

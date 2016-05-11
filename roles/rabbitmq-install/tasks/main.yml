@@ -43,36 +43,51 @@
 # Because the handlers aren't working for some reason...
 - name: Stop rabbitmq
   service: name=rabbitmq-server state=stopped
+  tags: rabbitmq_config
 
 - name: Start rabbitmq
   service: name=rabbitmq-server state=started
+  tags: rabbitmq_config
 
 - name: Enable rabbitmq at startup
   service: name=rabbitmq-server enabled=yes
+  tags: rabbitmq_config
 
 - name: Create rabbitmq user account
   command: rabbitmqctl add_user mquser {{ rabbitmq_user_pass }}
-  tags: rabbitmq_users
+  tags: 
+   - rabbitmq_users
+   - rabbitmq_config
 
 - name: Delete guest account
   command: rabbitmqctl delete_user guest
-  tags: rabbitmq_users
+  tags: 
+   - rabbitmq_users
+   - rabbitmq_config
 
 - name: Set account permissions
   command: rabbitmqctl set_permissions mquser ".*" ".*" ".*"
-  tags: rabbitmq_users
+  tags: 
+   - rabbitmq_users
+   - rabbitmq_config
 
 - name: Set rabbitmq user tags
   command: rabbitmqctl set_user_tags mquser administrator
-  tags: rabbitmq_users
+  tags: 
+   - rabbitmq_users
+   - rabbitmq_config
 
 - name: Create HA Policies for AR queues
   command: rabbitmqctl set_policy "AR Mirrored Queues" "^AR\." '{"ha-mode":"all"}'
-  tags: rabbitmq_policy
+  tags: 
+   - rabbitmq_policy
+   - rabbitmq_config
 
 - name: Create HA Policies for AY queues
   command: rabbitmqctl set_policy "AY Mirrored Queues" "^AY\." '{"ha-mode":"all"}'
-  tags: rabbitmq_policy
+  tags: 
+   - rabbitmq_policy
+   - rabbitmq_config
 
 - name: Add splunk monitoring
   lineinfile: "dest=/opt/splunk/etc/system/local/inputs.conf line='[monitor:///var/log/rabbitmq/rabbit@{{ ansible_hostname }}.log]'"

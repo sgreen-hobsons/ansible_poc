@@ -1,20 +1,23 @@
 ---
-#- name: Adding iptables rules for rabbitmq clustering
-#  command: iptables -A INPUT -m tcp -p tcp --dport {{ item }} -j ACCEPT
-#  with_items:
-#    - 4369
-#    - 25672
-#  tags: rabbitmq_iptables
+- name: Adding iptables rules for rabbitmq clustering
+  command: iptables -A INPUT -m tcp -p tcp --dport {{ item }} -j ACCEPT
+  with_items:
+    - 4369
+    - 25672
+  tags: rabbitmq_iptables
 
-#- name: Saving iptables changes
-#  command: /etc/init.d/iptables save
-#  tags: rabbitmq_iptables
+- name: Saving iptables changes
+  command: /etc/init.d/iptables save
+  tags: rabbitmq_iptables
+
+- name: Restart iptables
+  service: name=iptables state=restarted
 
 - name: Stopping rabbitmq app
   command: rabbitmqctl stop_app
 
-- name: Resetting rabbitmq app
-  command: rabbitmqctl reset
+#- name: Resetting rabbitmq app
+#  command: rabbitmqctl reset
 
 - name: Stopping rabbitmq-server
   service: name=rabbitmq-server state=stopped
@@ -43,9 +46,9 @@
   command: rabbitmqctl stop_app
   when: inventory_hostname != "{{ rabbitmq_master }}"
 
-- name: Resetting rabbitmq app
-  command: rabbitmqctl reset
-  when: inventory_hostname != "{{ rabbitmq_master }}"
+#- name: Resetting rabbitmq app
+#  command: rabbitmqctl reset
+#  when: inventory_hostname != "{{ rabbitmq_master }}"
 
 - name: Joining rabbitmq cluster
   command: rabbitmqctl join_cluster 'rabbit@{{ rabbitmq_master }}'
