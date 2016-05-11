@@ -24,3 +24,5 @@ snmp_syscontact: networkteam@hobsons.com
 
 splunk_server: lhr1-splunk
 splunk_port: 9997
+
+logicm_collector: EMT\LHR1PU-LOGICM02

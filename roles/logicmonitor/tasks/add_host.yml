@@ -1,0 +1,16 @@
+---
+- name: Deploy LogicMonitor Host
+  local_action: >
+    logicmonitor
+    target=host
+    action=add
+    hostname='{{ logicm_hostname }}'
+    displayname='{{ logicm_hostname }}'
+    collector='{{ logicm_collector }}'
+    company='{{ logicm_company }}'
+    user='{{ logicm_user }}'
+    password='{{ logicm_password }}'
+    groups="{{ logicm_group }}"
+#   properties="{'snmp.community':'commstring','dc':'1', 'type':'prod'}"
+  tags:
+   - host_add

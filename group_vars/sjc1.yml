@@ -9,3 +9,5 @@ nameserver_config:
 
 splunk_server: sjc1-splunk
 splunk_port: 9997
+
+logicm_collector: EMT\SJC1PU-LOGICM01

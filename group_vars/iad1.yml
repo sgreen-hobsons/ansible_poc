@@ -25,3 +25,5 @@ snmp_syscontact: networkteam@hobsons.com
 
 splunk_server: iad1-splunk
 splunk_port: 9997
+
+logicm_collector: IAD1PU-LOGICM01

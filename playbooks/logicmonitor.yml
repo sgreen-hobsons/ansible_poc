@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+
+  vars:
+    logicm_hostname: 'iad1pu-aprrab03'
+    logicm_collector: 'IAD1PU-LOGICM01'
+
+  roles:
+    - logicmonitor
