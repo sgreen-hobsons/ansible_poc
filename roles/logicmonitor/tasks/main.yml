@@ -1,2 +1,2 @@
 ---
-- include: add_host.yml
+- include: add_host.yml tags=add_host

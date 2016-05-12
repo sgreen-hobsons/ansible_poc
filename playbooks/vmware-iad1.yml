@@ -17,12 +17,12 @@
 - hosts: localhost
 
   vars:
-    - vmware_guest_name: 'iad1pu-aprrab04'
+    - vmware_guest_name: 'iad1pu-kfprov01'
     - vmware_vcenter_hostname: 'iad1-vmmngt01.emt.hobsons.local' 
     - vmware_datacenter: 'IAD1-VMWare'
     - vmware_cluster: 'IAD1 VMCluster1 - PROD'
     - vmware_cluster_hostname: 'iad1-07a-01-vmhost.emt.hobsons.local'
-    - vmware_vcenter_guest_folder: 'AppReview'
+    - vmware_vcenter_guest_folder: 'Utilities'
     - vmware_network01: 'VM Network Ethernet'
     - vmware_datastore01: 'iad1vm4dsprod01'
     - vmware_disk01_size_gb: '30'

@@ -11,6 +11,4 @@
     user='{{ logicm_user }}'
     password='{{ logicm_password }}'
     groups="{{ logicm_group }}"
-#   properties="{'snmp.community':'commstring','dc':'1', 'type':'prod'}"
-  tags:
-   - host_add
+    properties="{'system.categories':'Netsnmp,snmp,snmpTCPUDP,snmpHR'}"
