@@ -13,6 +13,9 @@
 - name: Restart iptables
   service: name=iptables state=restarted
 
+- name: Ensure iptables enabled at startup
+  service: name=iptables enabled=yes
+
 - name: Stopping rabbitmq app
   command: rabbitmqctl stop_app
 

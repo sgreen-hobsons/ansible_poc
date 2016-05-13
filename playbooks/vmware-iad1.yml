@@ -25,9 +25,9 @@
     - vmware_vcenter_guest_folder: 'Utilities'
     - vmware_network01: 'VM Network Ethernet'
     - vmware_datastore01: 'iad1vm4dsprod01'
-    - vmware_disk01_size_gb: '30'
-    - vmware_hw_memory_mb: '8192'
-    - vmware_hw_num_cpus: '2'
+    - vmware_disk01_size_gb: '16'
+    - vmware_hw_memory_mb: '2048'
+    - vmware_hw_num_cpus: '1'
     - vmware_os_guest_id: 'centos64Guest'
     - vmware_iso_path: "iad1vm3dsbuild0/ISO's/CentOS-6.7-x86_64-kick.iso"
 

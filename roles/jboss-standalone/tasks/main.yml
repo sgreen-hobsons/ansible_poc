@@ -37,3 +37,6 @@
 - name: deploy iptables rules
   template: src=iptables-save dest=/etc/sysconfig/iptables
   notify: restart iptables
+
+- name: Ensure iptables enabled
+  service: name=iptables enabled=yes

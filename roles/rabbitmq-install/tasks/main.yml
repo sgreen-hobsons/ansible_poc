@@ -24,6 +24,9 @@
   command: /etc/init.d/iptables save
   tags: rabbitmq_iptables
 
+- name: Ensure iptables enabled at startup
+  service: name=iptables enabled=yes
+
 - name: Enable rabbitmq management plugin
   command: rabbitmq-plugins enable rabbitmq_management
   tags: rabbitmq_config
