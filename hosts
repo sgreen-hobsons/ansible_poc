@@ -18,6 +18,7 @@ iad1pu-aprrab04
 iad1pu-kfprov01
 
 [sjc1]
+sjc1pu-ipam01
 sjc1du-ansitest01
 sjc1du-ansitest02
 localhost	ansible_connection=local

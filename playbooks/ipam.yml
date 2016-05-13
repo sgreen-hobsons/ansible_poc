@@ -1,0 +1,38 @@
+---
+# Prep for PHPIPAM
+
+- hosts: all
+  remote_user: ansi
+  become: true
+  become_user: root
+  become_method: sudo
+
+  vars:
+    package_list:
+     - php-pdo
+     - php-mysql
+     - php-ldap
+     - php-common
+     - php
+     - php-ircmaxell-security-lib
+     - php-ZendFramework2-Math
+     - php-xml
+     - php-xmlrpc
+     - php-xmlseclibs
+     - php-php-seclib-crypt-base
+     - php-mcrypt
+     - php-JsonSchema
+     - php-jsonlint
+     - php-php-gettext
+     - php-cli
+     - php-pcntl
+     - php-pear
+     - httpd
+     - mod_ssl
+     - mysql
+     - mysql-server
+     - mysql-utilities
+
+  tasks:
+    - name: Install requisite packages
+      yum: name={{ package_list }}
