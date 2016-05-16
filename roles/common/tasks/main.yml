@@ -8,6 +8,7 @@
    - wget
    - curl
    - sssd-client
+   - epel-release
 
 - name: Copy /etc/resolv.conf
   template: src=etc/resolv.conf.j2 dest=/etc/resolv.conf mode=644
@@ -24,5 +25,5 @@
    - iptables
    - ip6tables
 
-- name: Ensure selinux is disables
+- name: Ensure selinux is disabled
   selinux: state=disabled

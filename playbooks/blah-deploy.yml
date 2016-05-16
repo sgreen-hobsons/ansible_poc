@@ -14,16 +14,17 @@
 - hosts: localhost
 
   vars:
-    - vmware_guest_name: 'sjc1du-ansitest02'
+#    - vmware_guest_name: 'sjc1du-ansitest02'
+    - vmware_guest_name: '{{ inventory_hostname }}'
     - vmware_vcenter_hostname: 'sjc1-vmmngt01.emt.hobsons.local' 
     - vmware_datacenter: 'SJC1-VMWare'
     - vmware_cluster: 'SJC1_VMCluster3_QA_DEV_STAGING_DR'
     - vmware_cluster_hostname: 'sjc1-04a-01-vmhost.emt.hobsons.local'
+    - vmware_vcenter_guest_folder: 'Utilities'
     - vmware_network01: 'VM Network Ethernet - 128'
     - vmware_datastore01: 'sjc1vm4dsqadev02'
     - vmware_os_guest_id: 'centos64Guest'
     - vmware_iso_path: 'sjc1vm4dsprod01/ISO/CentOS-6.7-x86_64-kick.iso'
-    - vmware_vcenter_guest_folder: 'Utilities'
     - vmware_hw_memory_mb: '2048'
     - vmware_hw_num_cpus: '2'
     - vmware_disk01_size_gb: '20'
@@ -33,4 +34,3 @@
     - vmware-guest-prep
     - vmware-guest-deploy
 #    - vmware-guest-deploy-2disk
-

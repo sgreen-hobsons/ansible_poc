@@ -1,4 +1,11 @@
 ---
+ntp_config_restrict:
+  - 'default kod nomodify notrap nopeer noquery'
+  - '-6 default kod nomodify notrap nopeer noquery'
+  - '127.0.0.1'
+  - '-6 ::1'
+  - '10.0.0.0 mask 255.0.0.0'
+
 ntp_config_server:
   - sjc1ads01.emt.hobsons.local
   - sjc1ads02.emt.hobsons.local
@@ -6,6 +13,15 @@ ntp_config_server:
 nameserver_config: 
   - 10.24.132.5
   - 10.24.132.6
+
+snmp_rocommunity:
+  - public
+  - hobsons-he
+  - Hobsons
+
+snmp_syslocation: SJC1 Datacenter
+
+snmp_syscontact: networkteam@hobsons.com 
 
 splunk_server: sjc1-splunk
 splunk_port: 9997

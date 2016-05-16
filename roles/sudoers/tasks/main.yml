@@ -1,5 +1,5 @@
 ---
-- name: Update sudoers
+- name: Update sudoers 6
   template:
     dest=/etc/sudoers.d/hobsons
     src=etc/sudoers.d/hobsons
@@ -8,3 +8,11 @@
     group=root
     force=yes
     validate='visudo -cf %s'
+  when: ansible_distribution_major_version == "6"
+
+- name: Update sudoers 5
+  lineinfile:
+    "dest=/etc/sudoers
+    line='ansi    ALL=(ALL)       NOPASSWD: ALL'
+    validate='visudo -cf %s'"
+  when: ansible_distribution_major_version == "5"

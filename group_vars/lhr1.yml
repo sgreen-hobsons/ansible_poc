@@ -17,6 +17,7 @@ nameserver_config:
 snmp_rocommunity:
   - hobsons-he
   - Hobsons
+  - public
 
 snmp_syslocation: LHR1 Datacenter
 

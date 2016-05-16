@@ -1,0 +1,13 @@
+---
+# Deploying & Bootstrapping
+
+- hosts: new
+
+  roles:
+    - clientsetup
+    - common
+    - sudoers
+    - ntp
+    - snmp
+    - clamav
+    - patching

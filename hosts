@@ -8,6 +8,9 @@
 #   - You can enter hostnames or ip addresses
 #   - A hostname/ip can be a member of multiple groups
 
+[new]
+sjc1du-ansitest02
+
 [iad1]
 iad1pu-ayprx01
 iad1pu-appprx01
@@ -51,6 +54,21 @@ iad1pu-shib02
 lhr1pdccent
 lhr1sdccent
 lhr1pdrman
+
+[rad_qa_sjc1]
+10.24.132.220 #sjc1_radius_qa_env1_app01
+10.24.132.221 #sjc1_radius_qa_env1_app02
+10.24.132.213 #sjc1_radius_qa_env2_app01
+10.24.132.214 #sjc1_radius_qa_env2_app02
+10.24.132.202 #sjc1_radius_qa_env3_app01
+10.24.132.203 #sjc1_radius_qa_env3_app02
+10.24.132.160 #sjc1_radius_qa_env4_app01
+10.24.132.161 #sjc1_radius_qa_env4_app02
+10.24.132.165 #sjc1_radius_qa_env5_app01
+10.24.132.166 #sjc1_radius_qa_env5_app02
+10.24.132.170 #sjc1_radius_qa_env6_app01
+10.24.132.171 #sjc1_radius_qa_env6_app02
+sjc1radmail01
 
 [windows]
 #iad1-sccm01

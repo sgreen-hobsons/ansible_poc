@@ -11,9 +11,9 @@
 - hosts: all
   remote_user: root
 
-#  pre_tasks:
-#  - name: Install python SELinux libraries
-#    yum: name=libselinux-python state=present
+  pre_tasks:
+  - name: Install python SELinux libraries
+    yum: name=libselinux-python state=present
 
   roles:
     - clientsetup
@@ -22,3 +22,4 @@
     - common
     - ntp
     - snmp
+    - clamav

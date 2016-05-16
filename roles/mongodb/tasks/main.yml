@@ -1,0 +1,18 @@
+---
+- name: Setup MongoDB yum repo
+  copy: src=mongodb-3.2.repo dest=/etc/yum.repos.d/
+  tags: mongodb_install
+
+- name: Install MongoDB
+  yum: name={{ item }} state=latest
+  with_items:
+    - mongodb-org-3.2.1
+    - mongodb-org-server-3.2.1
+    - mongodb-org-shell-3.2.1
+    - mongodb-org-mongos-3.2.1
+    - mongodb-org-tools-3.2.1
+  tags: mongodb_install
+
+- name: Enable MongoDB at startup
+  service: name=mongod enabled=yes
+  tags: mongodb_install

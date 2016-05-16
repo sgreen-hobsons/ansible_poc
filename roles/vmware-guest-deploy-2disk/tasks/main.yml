@@ -1,0 +1,52 @@
+---
+# Deploy new guest with two disks 
+- name: Deploy new host 
+  vsphere_guest:
+    vcenter_hostname: "{{ vmware_vcenter_hostname }}"
+    username: "{{ vmware_vcenter_username }}"
+    password: "{{ vmware_vcenter_password }}"
+    guest: "{{ vmware_guest_name }}"
+    state: powered_on
+    esxi:
+      datacenter: "{{ vmware_datacenter }}"
+      hostname: "{{ vmware_cluster_hostname }}"
+
+    # More than one disk & nic can be created.  Be sure to update vars.
+    vm_disk:
+     disk1:
+       size_gb: "{{ vmware_disk01_size_gb }}"
+       type: thin
+       datastore: "{{ vmware_datastore01 }}"
+     disk2:
+       size_gb: "{{ vmware_disk02_size_gb }}"
+       type: thin
+       datastore: "{{ vmware_datastore01 }}"
+    vm_nic:
+      nic1:
+        type: vmxnet3
+        network: "{{ vmware_network01 }}"
+        network_type: standard
+
+    vm_hardware:
+      memory_mb: "{{ vmware_hw_memory_mb }}"
+      num_cpus: "{{ vmware_hw_num_cpus }}"
+      osid: "{{ vmware_os_guest_id }}"
+      scsi: paravirtual
+      vm_cdrom:
+        type: "iso"
+        iso_path: "{{ vmware_iso_path }}"
+      # Uncomment the following if needed
+      #vm_floppy:
+      #  type: "image"
+      #  image_path: "DatastoreName/floppy-image.flp"
+
+    vm_extra_config:
+      folder: "{{ vmware_vcenter_guest_folder }}"
+
+  tags:
+    - deploy_2_disk
+
+- name: Waiting for host to come up...
+  local_action: wait_for host={{ vmware_guest_name }} port=22 state=started delay=120 timeout=720
+  tags:
+    - deploy_2_disk

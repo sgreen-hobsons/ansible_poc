@@ -1,0 +1,3 @@
+---
+vmware_vcenter_username: 'HOBSONS\ansible_vcenter'
+vmware_vcenter_password: 'C@tandM0u5e!'

@@ -1,0 +1,17 @@
+---
+- name: Install ClamAV
+  yum: name={{ item }} state=present
+  with_items:
+   - clamd
+   - clamav
+   - clamav-db
+   - clamav-milter
+
+- name: Enable ClamAV on startup
+  service: name=clamd enabled=yes
+
+- name: Update ClamAV virus definitions
+  command: /usr/bin/freshclam
+
+- name: Start ClamAV
+  service: name=clamd state=started

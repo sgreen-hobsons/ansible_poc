@@ -5,7 +5,8 @@
 # $ ansible-playbook existing_host_setup.yml -k -l IPADDRESS or HOSTNAME
 # 	<enter root password for remote system> 
 #
-- hosts: all
+#- hosts: all
+- hosts: rad_qa_sjc1
   remote_user: root
 
   pre_tasks:
@@ -20,5 +21,5 @@
   roles:
     - clientsetup
     - sudoers
-    - common
-    - ntp
+#    - common
+#    - ntp
