@@ -16,3 +16,18 @@
   template: src=outputs.conf.j2 dest=/opt/splunk/etc/system/local/outputs.conf owner=splunk group=splunk mode=0644
   notify: restart splunk
   tags: splunk
+
+- name: Adding iptables rules for splunkd
+  command: iptables -I INPUT -m tcp -p tcp--dport {{ item }} -j ACCEPT -m comment --comment "Splunk Port"
+  with_items:
+    - 8000
+    - 8089
+    - 9997
+    - 8080
+    - 514
+  tags: rabbitmq_iptables
+
+- name: Saving iptables changes
+  shell: iptables-save > /etc/sysconfig/iptables
+  tags: rabbitmq_iptables
+

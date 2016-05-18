@@ -1,0 +1,9 @@
+---
+- name: start clamd
+  service: name=clamd state=started
+
+- name: restart clamd
+  service: name=clamd state=restarted
+
+- name: stop clamd
+  service: name=clamd state=stopped

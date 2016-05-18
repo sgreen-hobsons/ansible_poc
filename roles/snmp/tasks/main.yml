@@ -5,14 +5,23 @@
    - net-snmp
    - net-snmp-utils
    - net-snmp-libs
-  tags: snmp
 
 - name: Copying snmp.conf & setting permissions
   template: src=snmpd.conf.j2 dest=/etc/snmp/snmpd.conf mode=644
   notify:
     - restart snmpd
-  tags: conf
+
+- name: Adding iptables rules for snmp
+  command: iptables -I INPUT -m tcp -p tcp --dport {{ item }} -j ACCEPT -m comment --comment "SNMP Port"
+  with_items:
+    - 161
+    - 162
+
+- name: Saving iptables changes
+  shell: iptables-save > /etc/sysconfig/iptables
+
+- name: Ensure iptables enabled at startup
+  service: name=iptables enabled=yes
 
 - name: Enable snmpd at startup
   service: name=snmpd enabled=yes
-  tags: snmp

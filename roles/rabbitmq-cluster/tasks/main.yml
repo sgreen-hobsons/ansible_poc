@@ -1,13 +1,13 @@
 ---
 - name: Adding iptables rules for rabbitmq clustering
-  command: iptables -A INPUT -m tcp -p tcp --dport {{ item }} -j ACCEPT
+  command: iptables -I INPUT -m tcp -p tcp --dport {{ item }} -j ACCEPT -m comment --comment "RabbitMQ Clustering"
   with_items:
     - 4369
     - 25672
   tags: rabbitmq_iptables
 
 - name: Saving iptables changes
-  command: /etc/init.d/iptables save
+  shell: iptables-save > /etc/sysconfig/iptables
   tags: rabbitmq_iptables
 
 - name: Restart iptables

@@ -9,9 +9,3 @@
 
 - name: Enable ClamAV on startup
   service: name=clamd enabled=yes
-
-- name: Update ClamAV virus definitions
-  command: /usr/bin/freshclam
-
-- name: Start ClamAV
-  service: name=clamd state=started

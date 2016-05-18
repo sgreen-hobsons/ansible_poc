@@ -1,0 +1,11 @@
+---
+# Install & configure NTP
+
+- hosts: all
+  remote_user: ansi
+  become: true
+  become_user: root
+  become_method: sudo
+
+  roles:
+    - ntp

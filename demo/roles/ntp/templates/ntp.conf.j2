@@ -1,0 +1,32 @@
+# For more information about this file, see the man pages
+# ntp.conf(5), ntp_acc(5), ntp_auth(5), ntp_clock(5), ntp_misc(5), ntp_mon(5).
+
+driftfile /var/lib/ntp/drift
+
+# Restrict 
+{% for restrict in ntp_config_restrict %}
+restrict {{ restrict }}
+{% endfor %}
+
+# Servers
+{% for server in ntp_config_server %}
+server {{ server }}
+{% endfor %}
+
+includefile /etc/ntp/crypto/pw
+
+# Key file containing the keys and key identifiers used when operating
+# with symmetric key cryptography. 
+keys /etc/ntp/keys
+
+# Specify the key identifiers which are trusted.
+#trustedkey 4 8 42
+
+# Specify the key identifier to use with the ntpdc utility.
+#requestkey 8
+
+# Specify the key identifier to use with the ntpq utility.
+#controlkey 8
+
+# Enable writing of statistics records.
+#statistics clockstats cryptostats loopstats peerstats

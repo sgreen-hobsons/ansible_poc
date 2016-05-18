@@ -10,6 +10,7 @@
 
 [new]
 sjc1du-ansitest02
+sjc1qd-armon04
 
 [iad1]
 iad1pu-ayprx01
@@ -22,6 +23,7 @@ iad1pu-kfprov01
 
 [sjc1]
 sjc1pu-ipam01
+sjc1qd-armon04
 sjc1du-ansitest01
 sjc1du-ansitest02
 localhost	ansible_connection=local

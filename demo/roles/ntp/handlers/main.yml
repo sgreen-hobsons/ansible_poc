@@ -1,0 +1,9 @@
+---
+- name: start ntpd
+  service: name=ntpd state=started
+
+- name: restart ntpd
+  service: name=ntpd state=restarted
+
+- name: stop ntpd
+  service: name=ntpd state=stopped

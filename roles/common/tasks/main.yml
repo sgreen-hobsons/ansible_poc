@@ -14,16 +14,16 @@
   template: src=etc/resolv.conf.j2 dest=/etc/resolv.conf mode=644
 
 - name: Stop iptables
-  service: name={{ item }} state=stopped
-  with_items:
-   - iptables
-   - ip6tables
+  service: name=iptables state=stopped
 
-- name: Disable iptables on startup
-  service: name={{ item }} enabled=no
-  with_items:
-   - iptables
-   - ip6tables
+- name: Copy base iptables
+  copy: src=iptables dest=/etc/sysconfig/iptables mode=644 
+
+- name: Ensure iptables in enabled
+  service: name=iptables enabled=yes
 
 - name: Ensure selinux is disabled
   selinux: state=disabled
+
+- name: Start iptables
+  service: name=iptables state=started

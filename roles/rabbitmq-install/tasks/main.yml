@@ -14,14 +14,14 @@
   tags: rabbitmq_install
 
 - name: Adding iptables rules for rabbitmq
-  command: iptables -A INPUT -m tcp -p tcp --dport {{ item }} -j ACCEPT
+  command: iptables -I INPUT -m tcp -p tcp --dport {{ item }} -j ACCEPT -m comment --comment "RabbitMQ"
   with_items:
     - 5672
     - 15672
   tags: rabbitmq_iptables
 
 - name: Saving iptables changes
-  command: /etc/init.d/iptables save
+  shell: iptables-save > /etc/sysconfig/iptables
   tags: rabbitmq_iptables
 
 - name: Ensure iptables enabled at startup

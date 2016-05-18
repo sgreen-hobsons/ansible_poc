@@ -1,0 +1,17 @@
+---
+- name: Install ntp, if needed
+  yum: name={{ item }} state=present
+  with_items:
+   - ntp
+   - ntpdate
+  tags: ntp
+
+- name: Copying ntp.conf & setting permissions
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf mode=644
+  notify:
+    - restart ntpd
+  tags: ntp
+
+- name: Enable ntpd at startup
+  service: name=ntpd enabled=yes
+  tags: ntp
