@@ -10,7 +10,10 @@
 
 [new]
 sjc1du-ansitest02
-sjc1qd-armon04
+lhr1qd-armon01
+sjc1qa-conred01
+sjc1qa-conred02
+sjc1qa-conred03
 
 [iad1]
 iad1pu-ayprx01
@@ -22,6 +25,9 @@ iad1pu-aprrab04
 iad1pu-kfprov01
 
 [sjc1]
+sjc1qa-conred01
+sjc1qa-conred02
+sjc1qa-conred03
 sjc1pu-ipam01
 sjc1qd-armon04
 sjc1du-ansitest01
@@ -34,6 +40,7 @@ lhr1sdccent
 lhr1pdrman
 lhr1pu-aprrab03
 lhr1pu-aprrab04
+lhr1qd-armon01
 
 [rabbitmq]
 iad1pu-aprrab03

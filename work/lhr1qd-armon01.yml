@@ -14,7 +14,7 @@
 - hosts: localhost
 
   vars:
-    - vmware_guest_name: 'lhr1pu-aprrab04'
+    - vmware_guest_name: 'lhr1qd-armon01'
     - vmware_vcenter_hostname: 'lhr1-vmmngt01.emt.hobsons.local' 
     - vmware_datacenter: 'LHR1-VMWare'
     - vmware_cluster: 'LHR1-VMCluster - PROD'
@@ -24,12 +24,12 @@
     - vmware_datastore01: 'vmdatastore04'
     - vmware_os_guest_id: 'centos64Guest'
     - vmware_iso_path: 'vmdatastore01/ISO/CentOS-6.7-x86_64-kick.iso'
-    - vmware_hw_memory_mb: '8192'
-    - vmware_hw_num_cpus: '2'
-    - vmware_disk01_size_gb: '30'
-#    - vmware_disk02_size_gb: '30'
+    - vmware_hw_memory_mb: '16384'
+    - vmware_hw_num_cpus: '1'
+    - vmware_disk01_size_gb: '16'
+    - vmware_disk02_size_gb: '100'
 
   roles:
     - vmware-guest-prep
-    - vmware-guest-deploy
-#    - vmware-guest-deploy-2disk
+#    - vmware-guest-deploy
+    - vmware-guest-deploy-2disk

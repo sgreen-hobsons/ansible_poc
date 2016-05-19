@@ -12,7 +12,7 @@
     - restart snmpd
 
 - name: Adding iptables rules for snmp
-  command: iptables -I INPUT -m tcp -p tcp --dport {{ item }} -j ACCEPT -m comment --comment "SNMP Port"
+  command: iptables -I INPUT -m udp -p udp --dport {{ item }} -j ACCEPT -m comment --comment "SNMP Port"
   with_items:
     - 161
     - 162
