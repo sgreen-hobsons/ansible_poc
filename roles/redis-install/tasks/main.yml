@@ -1,0 +1,45 @@
+---
+- name: Install EPEL
+  yum: name=epel-release state=present
+  tags: redis_install
+
+- name: Setup Redis Yum Repo
+  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-6.rpm state=present
+  tags: redis_install
+
+- name: Install Redis 
+  yum: name=redis state=installed enablerepo=remi,remi-test
+
+- name: Adding iptables rules for Redis
+  command: iptables -I INPUT -m tcp -p tcp --dport {{ item }} -j ACCEPT -m comment --comment "Redis"
+  with_items:
+    - 6379
+  tags: redis_iptables
+
+- name: Saving iptables changes
+  shell: iptables-save > /etc/sysconfig/iptables
+  tags: redis_iptables
+
+- name: Ensure iptables enabled at startup
+  service: name=iptables enabled=yes
+
+- name: Set vm.overcommit_memory=1
+  sysctl: name=vm.overcommit_memory value=1 state=present reload=no
+  tags: redis_config
+
+- name: Set net.core.somaxconn=65535
+  sysctl: name=net.core.somaxcomm value=65536 state=present reload=no
+  tags: redis_config
+
+- name: Set fs.file-max=100000
+  sysctl: name=fs.file-max value=100000 state=present reload=yes
+  tags: redis_config
+
+- name: Start Redis
+  service: name=redis-server state=started
+  tags: redis_config
+
+- name: Enable Redis at startup
+  service: name=redis-server enabled=yes
+  tags: redis_config
+

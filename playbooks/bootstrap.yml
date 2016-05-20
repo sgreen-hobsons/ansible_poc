@@ -11,3 +11,7 @@
     - snmp
     - clamav
     - patching
+
+  post_tasks:
+    - command: freshclam
+    - service: name=clamd state=restarted

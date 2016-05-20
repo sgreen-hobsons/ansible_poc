@@ -1,0 +1,9 @@
+---
+- name: start_redis
+  service: name=redis state=started
+
+- name: restart_redis
+  service: name=redis state=restarted
+
+- name: stop_redis
+  service: name=redis state=stopped
