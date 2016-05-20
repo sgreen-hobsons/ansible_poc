@@ -7,5 +7,10 @@
    - clamav-db
    - clamav-milter
 
+- name: Run freshclam to check for database updates
+  command: freshclam --no-warnings
+  register: freshclam
+  changed_when: freshclam.stdout.find("updated") != -1
+
 - name: Enable ClamAV on startup
   service: name=clamd enabled=yes

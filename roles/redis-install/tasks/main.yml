@@ -27,19 +27,15 @@
   sysctl: name=vm.overcommit_memory value=1 state=present reload=no
   tags: redis_config
 
-- name: Set net.core.somaxconn=65535
-  sysctl: name=net.core.somaxcomm value=65536 state=present reload=no
-  tags: redis_config
-
 - name: Set fs.file-max=100000
   sysctl: name=fs.file-max value=100000 state=present reload=yes
   tags: redis_config
 
 - name: Start Redis
-  service: name=redis-server state=started
+  service: name=redis state=started
   tags: redis_config
 
 - name: Enable Redis at startup
-  service: name=redis-server enabled=yes
+  service: name=redis enabled=yes
   tags: redis_config
 

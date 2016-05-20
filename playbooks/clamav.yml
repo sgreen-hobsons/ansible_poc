@@ -1,5 +1,5 @@
 ---
-# Install & configure Redis
+# Install & configure ClamAV
 
 - hosts: all
   remote_user: ansi
@@ -8,4 +8,4 @@
   become_method: sudo
 
   roles:
-    - redis-install
+    - clamav
